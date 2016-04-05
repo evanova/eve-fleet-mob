@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    compile 'javax.persistence:persistence-api:1.0.2'
+
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.j256.ormlite:ormlite-jdbc:4.48'
+}
