@@ -2,16 +2,13 @@ package com.eve0.fleetmob.crest.model;
 
 import java.lang.*;
 
-/**
- * Created by w9jds on 3/26/2016.
- */
-public final class CRESTContactItem {
+public final class CrestContactItem extends CrestEntity {
 
     private double standing;
 
-    private CRESTCharacter character;
+    private CrestCharacter character;
 
-    private CRESTContact contact;
+    private CrestContact contact;
 
     private String href;
 
@@ -25,11 +22,11 @@ public final class CRESTContactItem {
         return href;
     }
 
-    public CRESTCharacter getCharacter() {
+    public CrestCharacter getCharacter() {
         return character;
     }
 
-    public CRESTContact getContact() {
+    public CrestContact getContact() {
         return contact;
     }
 

@@ -1,35 +1,15 @@
 package com.eve0.fleetmob.crest.model;
 
-/**
- * Created by w9jds on 3/26/2016.
- */
-public final class CRESTCorporation {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    private String name;
+public class CrestCorporation extends CrestItem {
 
+    @JsonProperty
     private boolean isNPC;
 
-    private String href;
+    //FIXME maybe logo
 
-    private CRESTImages logo;
-
-    private long id;
-
-    public CRESTImages getLogo() {
-        return logo;
+    public boolean getNPC() {
+        return isNPC;
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getHref() {
-        return href;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-
 }

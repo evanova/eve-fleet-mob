@@ -1,16 +1,21 @@
 package com.eve0.fleetmob.crest.model;
 
-/**
- * Created by w9jds on 3/26/2016.
- */
-public final class CRESTToken {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+public final class CrestToken extends CrestEntity {
+
+    @JsonProperty("access_token")
     private String accessToken;
 
+    @JsonProperty("token_type")
     private String tokenType;
 
+    @JsonProperty("expires_in")
+    @JsonDeserialize(using = DateTimeDeserializer.class)
     private long expiresIn;
 
+    @JsonProperty("refresh_token")
     private String refreshToken;
 
     public String getAccessToken() {

@@ -1,49 +1,29 @@
 package com.eve0.fleetmob.crest.model;
 
-/**
- * Created by w9jds on 3/26/2016.
- */
-public final class CRESTCharacter {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-    private String name;
+public class CrestCharacter extends CrestItem {
 
-    private CRESTCorporation corporation;
-
+    @JsonProperty
     private boolean isNPC;
 
-    private String href;
+    @JsonProperty
+    private CrestCorporation corporation;
 
-    private CRESTReference capsuleer;
+    @JsonProperty("capsuleer")
+    @JsonDeserialize(using = RefDeserializer.class)
+    private String capsuleerRef;
 
-    private CRESTImages portrait;
-
-    private long id;
-
-    public long getId() {
-        return id;
+    public boolean getNPC() {
+        return isNPC;
     }
 
-    public CRESTCorporation getCorporation() {
+    public CrestCorporation getCorporation() {
         return corporation;
     }
 
-    public CRESTImages getPortrait() {
-        return portrait;
-    }
-
-    public CRESTReference getCapsuleer() {
-        return capsuleer;
-    }
-
-    public String getHref() {
-        return href;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setCapsuleer(String href) {
-        capsuleer = new CRESTReference(href);
+    public String getCapsuleerRef() {
+        return capsuleerRef;
     }
 }

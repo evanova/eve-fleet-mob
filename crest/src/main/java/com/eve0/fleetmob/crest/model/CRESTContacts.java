@@ -1,17 +1,19 @@
 package com.eve0.fleetmob.crest.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.List;
 
-/**
- * Created by w9jds on 3/26/2016.
- */
-public final class CRESTContacts {
+public final class CrestContacts extends CrestEntity {
 
     private int pageCount;
 
-    private List<CRESTContactItem> items;
+    private List<CrestContactItem> items;
 
-    private CRESTReference next;
+    @JsonProperty
+    @JsonDeserialize(using = RefDeserializer.class)
+    private String next;
 
     private int totalCount;
 
@@ -19,7 +21,7 @@ public final class CRESTContacts {
         return pageCount;
     }
 
-    public List<CRESTContactItem> getItems() {
+    public List<CrestContactItem> getItems() {
         return items;
     }
 
@@ -27,7 +29,7 @@ public final class CRESTContacts {
         return totalCount;
     }
 
-    public CRESTReference getNext() {
+    public String getNext() {
         return next;
     }
 
