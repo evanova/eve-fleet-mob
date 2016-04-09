@@ -1,7 +1,6 @@
 package com.eve0.crest.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public final class CrestToken extends CrestEntity {
 
@@ -12,7 +11,6 @@ public final class CrestToken extends CrestEntity {
     private String tokenType;
 
     @JsonProperty("expires_in")
-    @JsonDeserialize(using = DateTimeDeserializer.class)
     private long expiresIn;
 
     @JsonProperty("refresh_token")

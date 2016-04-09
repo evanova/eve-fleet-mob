@@ -1,12 +1,11 @@
 package com.eve0.fleetmob.app;
 
-import android.app.Application;
-
+import com.eve0.fleetmob.app.crest.CrestModule;
 import com.squareup.leakcanary.LeakCanary;
 
 
 public class Application extends android.app.Application {
-    private FleetMobComponent appComponent;
+    private ApplicationComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -15,14 +14,16 @@ public class Application extends android.app.Application {
 
         if (appComponent == null) {
             appComponent =
-                    DaggerFleetMobComponent
+                    DaggerApplicationComponent
                             .builder()
-                            .fleetMobModule(new FleetMobModule(this))
+                            .applicationModule(new ApplicationModule(this))
+                            .crestModule(new CrestModule(this))
                             .build();
         }
     }
 
-    public FleetMobComponent getAppComponent() {
+    public ApplicationComponent getAppComponent() {
         return appComponent;
     }
+
 }

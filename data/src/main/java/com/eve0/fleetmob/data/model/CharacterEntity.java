@@ -4,17 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-/*
-    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
-            + _ID + " INTEGER PRIMARY KEY, "
-            + CORPORATION_ID_COLUMN + " INTEGER, "
-            + IS_NPC_COLUMN + " BOOLEAN, "
-            + CAPSULEER_COLUMN + " TEXT, "
-            + HREF_COLUMN + " TEXT, "
-            + " FOREIGN KEY (" + CORPORATION_ID_COLUMN + ") REFERENCES "
-            + CorporationEntry.TABLE_NAME + " (" + CorporationEntry._ID + "),"
-            + " UNIQUE (" + _ID + ") ON CONFLICT REPLACE);";
-*/
 @Entity(name = "characters")
 public class CharacterEntity {
 

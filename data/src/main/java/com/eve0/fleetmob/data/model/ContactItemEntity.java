@@ -7,27 +7,6 @@ import javax.persistence.Id;
 @Entity(name = "ContactItems")
 public final class ContactItemEntity {
 
-    /*
-
-    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
-            + _ID + " INTEGER PRIMARY KEY, "
-            + OWNER_COLUMN + " REAL, "
-            + STANDING_COLUMN + " REAL, "
-            + HREF_COLUMN + " TEXT, "
-            + CONTACT_TYPE_COLUMN + " TEXT, "
-            + CHARACTER_ID_COLUMN + " INTEGER, "
-            + CONTACT_ID_COLUMN + " INTEGER, "
-            + WATCHED_COLUMN + " BOOLEAN, "
-            + BLOCKED_COLUMN + " BOOLEAN, "
-            + SYNCED_COLUMN + " BOOLEAN, "
-            + " FOREIGN KEY (" + CONTACT_ID_COLUMN + ") REFERENCES "
-            + ContactEntry.TABLE_NAME + " (" + ContactEntry._ID + "), "
-            + " FOREIGN KEY (" + CHARACTER_ID_COLUMN + ") REFERENCES "
-            + CharacterEntry.TABLE_NAME + " (" + CharacterEntry._ID + "), "
-            + " FOREIGN KEY (" + OWNER_COLUMN + ") REFERENCES "
-            + UsersEntry.TABLE_NAME + " (" + UsersEntry._ID + "), "
-            + " UNIQUE (" + _ID + ") ON CONFLICT REPLACE);";*/
-
     @Id
     @Column
     private long id;

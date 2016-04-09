@@ -11,6 +11,12 @@ public class RX {
 
     private RX() {}
 
+    public static <T> Observable<T> scheduled(Observable<T> observable) {
+        return observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     public static <T> Observable<T> defer(Func0<T> f) {
         final Observable<T> observable =
                 Observable.defer(() -> Observable.just(f.call()));

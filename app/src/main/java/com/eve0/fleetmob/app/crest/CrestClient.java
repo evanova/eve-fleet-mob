@@ -4,11 +4,15 @@ import com.eve0.crest.model.CrestCharacter;
 import com.eve0.crest.model.CrestCharacterStatus;
 import com.eve0.crest.model.CrestContacts;
 import com.eve0.crest.model.CrestToken;
+import com.eve0.fleetmob.app.model.EveCharacter;
+import com.eve0.fleetmob.app.model.EveContact;
+import com.eve0.fleetmob.app.util.RX;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -19,7 +23,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
-class CrestClient {
+public final class CrestClient {
 
     interface LoginService {
 
@@ -33,18 +37,14 @@ class CrestClient {
         Call<CrestCharacterStatus> getVerification(@Header("Authorization") String token);
     }
 
-    interface CrestService {
+    interface ClientService {
+
         @GET("/characters/{characterId}/contacts/")
         Observable<CrestContacts> getUserContacts(@Path("characterId") long characterId);
 
         @GET("/characters/{characterId}/")
         Observable<CrestCharacter> getCharacter(@Path("characterId") long characterId);
     }
-
-
-
-    private static final String CLIENT_ID = "84c122b173f94063a488c177d7e0b433";
-    private static final String SECRET_KEY = "Ro0FkbQujNwNmWEXguGj8cRTpsRIPq7kX5e8qMNZ";
 
     private final LoginService login;
 
@@ -55,46 +55,40 @@ class CrestClient {
         this.login = CrestRetrofit.newLogin(clientID, clientKey).create(LoginService.class);
     }
 
-    public ClientService authorize(final String authCode) {
+    public CrestService authorize(final String authCode) throws IOException {
         final CrestToken token = obtainToken(this.login, authCode);
         final CrestCharacterStatus status = obtainStatus(this.login, token);
-        final CrestService service = CrestRetrofit.newClient(token.getAccessToken()).create(CrestService.class);
-        return new ClientService() {
+        final ClientService service = CrestRetrofit.newClient(token.getAccessToken()).create(ClientService.class);
+        return new CrestService() {
             @Override
-            public Observable<CrestContacts> getUserContacts() {
-                return service.getUserContacts(status.getCharacterID());
+            public Observable<List<EveContact>> getContacts() {
+                return RX
+                        .scheduled(service.getUserContacts(status.getCharacterID())
+                        .map(contacts -> CrestMapper.map(contacts)));
             }
 
             @Override
-            public Observable<CrestCharacter> getCharacter() {
-                return service.getCharacter(status.getCharacterID());
+            public Observable<EveCharacter> getCharacter() {
+                return RX
+                        .scheduled(service.getCharacter(status.getCharacterID())
+                        .map(c -> CrestMapper.map(status, c)));
             }
         };
     }
 
-    private static CrestToken obtainToken(final LoginService login, final String authCode) {
-        try {
-            final Response<CrestToken> response = login.getUserToken("authorization_code", authCode).execute();
-            if (!response.isSuccessful()) {
-                throw new IOException("token request unsuccessful: " + response.message());
-            }
-            return response.body();
+    private static CrestToken obtainToken(final LoginService login, final String authCode) throws IOException {
+        final Response<CrestToken> response = login.getUserToken("authorization_code", authCode).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("token request unsuccessful: " + response.message());
         }
-        catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
+        return response.body();
     }
 
-    private static CrestCharacterStatus obtainStatus(final LoginService login, final CrestToken token) {
-        try {
-            final Response<CrestCharacterStatus> response = login.getVerification(token.getAccessToken()).execute();
-            if (!response.isSuccessful()) {
-                throw new IOException("status request unsuccessful: " + response.message());
-            }
-            return response.body();
+    private static CrestCharacterStatus obtainStatus(final LoginService login, final CrestToken token) throws IOException {
+        final Response<CrestCharacterStatus> response = login.getVerification(token.getAccessToken()).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("status request unsuccessful: " + response.message());
         }
-        catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
+        return response.body();
     }
 }
