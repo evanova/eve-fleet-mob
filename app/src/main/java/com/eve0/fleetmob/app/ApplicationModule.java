@@ -1,8 +1,6 @@
 package com.eve0.fleetmob.app;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -22,7 +20,7 @@ public class ApplicationModule {
     }
 
     @Provides
-    SharedPreferences provideSharedPreferences() {
-        return PreferenceManager.getDefaultSharedPreferences(context);
+    public ApplicationPreferences providePreferences() {
+        return new ApplicationPreferences(this.context);
     }
 }

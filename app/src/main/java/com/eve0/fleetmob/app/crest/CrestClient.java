@@ -6,10 +6,11 @@ import com.eve0.crest.model.CrestContacts;
 import com.eve0.crest.model.CrestToken;
 import com.eve0.fleetmob.app.model.EveCharacter;
 import com.eve0.fleetmob.app.model.EveContact;
-import com.eve0.fleetmob.app.util.RX;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,9 +22,9 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 public final class CrestClient {
+    private static final Logger LOG = LoggerFactory.getLogger(CrestClient.class);
 
     interface LoginService {
 
@@ -40,10 +41,10 @@ public final class CrestClient {
     interface ClientService {
 
         @GET("/characters/{characterId}/contacts/")
-        Observable<CrestContacts> getUserContacts(@Path("characterId") long characterId);
+        Call<CrestContacts> getUserContacts(@Path("characterId") long characterId);
 
         @GET("/characters/{characterId}/")
-        Observable<CrestCharacter> getCharacter(@Path("characterId") long characterId);
+        Call<CrestCharacter> getCharacter(@Path("characterId") long characterId);
     }
 
     private final LoginService login;
@@ -61,17 +62,28 @@ public final class CrestClient {
         final ClientService service = CrestRetrofit.newClient(token.getAccessToken()).create(ClientService.class);
         return new CrestService() {
             @Override
-            public Observable<List<EveContact>> getContacts() {
-                return RX
-                        .scheduled(service.getUserContacts(status.getCharacterID())
-                        .map(contacts -> CrestMapper.map(contacts)));
+            public List<EveContact> getContacts() {
+                try {
+                    return CrestMapper.map(
+                            service.getUserContacts(status.getCharacterID()).execute().body());
+                }
+                catch (IOException e) {
+                    LOG.error(e.getLocalizedMessage(), e);
+                    return null;
+                }
             }
 
             @Override
-            public Observable<EveCharacter> getCharacter() {
-                return RX
-                        .scheduled(service.getCharacter(status.getCharacterID())
-                        .map(c -> CrestMapper.map(status, c)));
+            public EveCharacter getCharacter() {
+                try {
+                    return CrestMapper.map(
+                        status,
+                        service.getCharacter(status.getCharacterID()).execute().body());
+                }
+                catch (IOException e) {
+                    LOG.error(e.getLocalizedMessage(), e);
+                    return null;
+                }
             }
         };
     }

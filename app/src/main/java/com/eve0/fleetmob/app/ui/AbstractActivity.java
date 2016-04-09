@@ -33,6 +33,11 @@ public abstract class AbstractActivity extends AppCompatActivity {
         inject(appComponent);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     protected final String r(final int rID) {
         try {
             return getResources().getString(rID);

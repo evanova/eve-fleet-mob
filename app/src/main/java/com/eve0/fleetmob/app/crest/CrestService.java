@@ -5,12 +5,14 @@ import com.eve0.fleetmob.app.model.EveContact;
 
 import java.util.List;
 
-import rx.Observable;
-
 public interface CrestService {
 
-    Observable<List<EveContact>> getContacts();
+    interface CrestAuthenticator {
+        void setCode(final String authCode);
+    }
 
-    Observable<EveCharacter> getCharacter();
+    List<EveContact> getContacts();
+
+    EveCharacter getCharacter();
 
 }
