@@ -5,7 +5,7 @@ import android.app.Application;
 import com.squareup.leakcanary.LeakCanary;
 
 
-public class FleetMobApplication extends Application {
+public class Application extends android.app.Application {
     private FleetMobComponent appComponent;
 
     @Override

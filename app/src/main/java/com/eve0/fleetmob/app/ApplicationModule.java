@@ -10,11 +10,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class FleetMobModule {
+public class ApplicationModule {
 
     private final Context context;
 
-    public FleetMobModule(final Context context) {
+    public ApplicationModule(final Context context) {
         this.context = context.getApplicationContext();
     }
 
