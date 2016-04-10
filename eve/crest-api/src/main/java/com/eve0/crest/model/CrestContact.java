@@ -1,18 +1,28 @@
 package com.eve0.crest.model;
 
-public final class CrestContact extends CrestItem {
+public final class CrestContact extends CrestEntity {
 
     private double standing;
 
     private CrestCharacter character;
 
-    private CrestContact contact;
+    private CrestItem contact;
 
     private String contactType;
 
     private boolean watched;
 
     private boolean blocked;
+
+    private String href;
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
 
     public double getStanding() {
         return standing;
@@ -30,11 +40,11 @@ public final class CrestContact extends CrestItem {
         this.character = character;
     }
 
-    public CrestContact getContact() {
+    public CrestItem getContact() {
         return contact;
     }
 
-    public void setContact(CrestContact contact) {
+    public void setContact(CrestItem contact) {
         this.contact = contact;
     }
 
