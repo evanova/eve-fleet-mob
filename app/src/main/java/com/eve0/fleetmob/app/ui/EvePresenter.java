@@ -1,6 +1,6 @@
 package com.eve0.fleetmob.app.ui;
 
-import com.eve0.fleetmob.app.crest.CrestService;
+import com.eve0.fleetmob.app.crest.EveService;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -9,13 +9,13 @@ import rx.Observable;
 import rx.Subscription;
 
 @Singleton
-public class CrestPresenter<V> extends ViewPresenter<V> {
+public class EvePresenter<V> extends ViewPresenter<V> {
 
-    private final Observable<CrestService> crest;
+    private final Observable<EveService> crest;
     private Subscription subscription;
 
     @Inject
-    public CrestPresenter(final Observable<CrestService> crest) {
+    public EvePresenter(final Observable<EveService> crest) {
         this.crest = crest;
     }
 
@@ -32,7 +32,7 @@ public class CrestPresenter<V> extends ViewPresenter<V> {
         super.detachView(retainInstance);
     }
 
-    protected void onServiceChanged(final CrestService service) {
+    protected void onServiceChanged(final EveService service) {
 
     }
 }

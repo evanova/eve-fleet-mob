@@ -9,7 +9,7 @@ public final class CrestContacts extends CrestEntity {
 
     private int pageCount;
 
-    private List<CrestContactItem> items;
+    private List<CrestContact> items;
 
     @JsonProperty
     @JsonDeserialize(using = RefDeserializer.class)
@@ -21,7 +21,7 @@ public final class CrestContacts extends CrestEntity {
         return pageCount;
     }
 
-    public List<CrestContactItem> getItems() {
+    public List<CrestContact> getItems() {
         return items;
     }
 

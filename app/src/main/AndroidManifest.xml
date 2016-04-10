@@ -28,6 +28,9 @@
         <meta-data
             android:name="crest.redirect"
             android:value="fleet://api.eveonline.com/redirect"/>
+        <meta-data
+            android:name="crest.scopes"
+            android:value="publicData,characterContactsRead,characterContactsWrite"/>
         <activity
             android:name=".ui.MainActivity"
             android:launchMode="singleTask">

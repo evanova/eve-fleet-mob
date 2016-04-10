@@ -1,6 +1,4 @@
-package com.eve0.fleetmob.app.crest;
-
-import android.util.Base64;
+package com.eve0.crest.retrofit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +18,11 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 final class CrestRetrofit {
     private static final Logger LOG = LoggerFactory.getLogger(CrestRetrofit.class);
 
+    private static final String LOGIN = "login.eveonline.com";
+    private static final String CREST = "crest-tq.eveonline.com";
+
+    private static final String AGENT = "FleetMob (https://github.com/evanova/eve-fleet-mob)";
+
     private static final class LoginInterceptor implements  Interceptor {
         private final String auth;
 
@@ -33,12 +36,12 @@ final class CrestRetrofit {
 
             Request.Builder builder = request.newBuilder()
                     .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                    .addHeader("Host", "login.eveonline.com");
+                    .addHeader("Host", LOGIN);
 
             if (request.header("Authorization") == null || request.header("Authorization").equals("")) {
                 builder.addHeader("Authorization", "Basic " + auth);
             }
-            builder.addHeader("User-Agent", "FleetMob (https://github.com/evanova/eve-fleet-mob)");
+            builder.addHeader("User-Agent", AGENT);
             return chain.proceed(builder.build());
         }
     };
@@ -57,8 +60,8 @@ final class CrestRetrofit {
                     .request()
                     .newBuilder()
                     .addHeader("Authorization", "Bearer " + token)
-                    .addHeader("Host", "crest-tq.eveonline.com")
-                    .addHeader("User-Agent", "FleetMob (https://github.com/evanova/eve-fleet-mob)");
+                    .addHeader("Host", CREST)
+                    .addHeader("User-Agent", AGENT);
             return chain.proceed(builder.build());
         }
     }
@@ -71,21 +74,21 @@ final class CrestRetrofit {
                 newBuilder()
                 .addInterceptor(new LoginInterceptor(toAuth(clientID, clientKey)))
                 .build(),
-                "https://login.eveonline.com/");
+                "https://" + LOGIN + "/");
     }
 
     public static Retrofit newClient(final String token) {
         return newRetrofit(newBuilder()
                 .addInterceptor(new ClientInterceptor(token))
                 .build(),
-                "https://crest-tq.eveonline.com/");
+                "https://" + CREST + "/");
     }
 
     private static OkHttpClient.Builder newBuilder() {
         OkHttpClient.Builder bob = new OkHttpClient.Builder();
-       // if (LOG.isDebugEnabled()) {
+        if (LOG.isDebugEnabled()) {
             bob.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
-      //  }
+        }
         return bob;
     }
 

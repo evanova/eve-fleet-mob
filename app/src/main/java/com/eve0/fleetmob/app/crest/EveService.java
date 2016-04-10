@@ -5,14 +5,9 @@ import com.eve0.fleetmob.app.model.EveContact;
 
 import java.util.List;
 
-public interface CrestService {
-
-    interface CrestAuthenticator {
-        void setCode(final String authCode);
-    }
+public interface EveService {
 
     List<EveContact> getContacts();
 
     EveCharacter getCharacter();
-
 }

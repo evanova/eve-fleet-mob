@@ -3,7 +3,6 @@ package com.eve0.crest.model;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -17,7 +16,7 @@ final class DateTimeDeserializer extends StdDeserializer<Long> {
     @Override
     public Long deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         final String value = p.getCodec().readValue(p, String.class);
-        if (StringUtils.isBlank(value)) {
+        if ((null == value) || (value.length() == 0)) {
             return 0l;
         }
 

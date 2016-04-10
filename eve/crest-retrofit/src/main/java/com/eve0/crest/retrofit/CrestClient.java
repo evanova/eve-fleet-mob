@@ -1,20 +1,17 @@
-package com.eve0.fleetmob.app.crest;
+package com.eve0.crest.retrofit;
 
-import com.eve0.crest.model.CrestCharacter;
-import com.eve0.crest.model.CrestCharacterStatus;
-import com.eve0.crest.model.CrestContacts;
-import com.eve0.crest.model.CrestToken;
-import com.eve0.fleetmob.app.model.EveCharacter;
-import com.eve0.fleetmob.app.model.EveContact;
-
+import java.io.IOException;
+import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.util.List;
-
+import com.eve0.crest.model.CrestCharacter;
+import com.eve0.crest.model.CrestCharacterStatus;
+import com.eve0.crest.model.CrestContact;
+import com.eve0.crest.model.CrestContacts;
+import com.eve0.crest.CrestService;
+import com.eve0.crest.model.CrestToken;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -56,16 +53,19 @@ public final class CrestClient {
         this.login = CrestRetrofit.newLogin(clientID, clientKey).create(LoginService.class);
     }
 
-    public CrestService authorize(final String authCode) throws IOException {
-        final CrestToken token = obtainToken(this.login, authCode);
+    public CrestService getFromAuthCode(final String authCode) throws IOException {
+        return getFromToken(obtainToken(this.login, authCode).getAccessToken());
+    }
+
+    public CrestService getFromToken(final String token) throws IOException {
         final CrestCharacterStatus status = obtainStatus(this.login, token);
-        final ClientService service = CrestRetrofit.newClient(token.getAccessToken()).create(ClientService.class);
+        final ClientService service = CrestRetrofit.newClient(token).create(ClientService.class);
         return new CrestService() {
             @Override
-            public List<EveContact> getContacts() {
+            public List<CrestContact> getContacts() {
                 try {
-                    return CrestMapper.map(
-                            service.getUserContacts(status.getCharacterID()).execute().body());
+                    final CrestContacts contacts = service.getUserContacts(status.getCharacterID()).execute().body();
+                    return contacts.getItems();
                 }
                 catch (IOException e) {
                     LOG.error(e.getLocalizedMessage(), e);
@@ -74,16 +74,19 @@ public final class CrestClient {
             }
 
             @Override
-            public EveCharacter getCharacter() {
+            public CrestCharacter getCharacter() {
                 try {
-                    return CrestMapper.map(
-                        status,
-                        service.getCharacter(status.getCharacterID()).execute().body());
+                    return service.getCharacter(status.getCharacterID()).execute().body();
                 }
                 catch (IOException e) {
                     LOG.error(e.getLocalizedMessage(), e);
                     return null;
                 }
+            }
+
+            @Override
+            public CrestCharacterStatus getCharacterStatus() {
+                return status;
             }
         };
     }
@@ -96,8 +99,8 @@ public final class CrestClient {
         return response.body();
     }
 
-    private static CrestCharacterStatus obtainStatus(final LoginService login, final CrestToken token) throws IOException {
-        final Response<CrestCharacterStatus> response = login.getVerification(token.getAccessToken()).execute();
+    private static CrestCharacterStatus obtainStatus(final LoginService login, final String token) throws IOException {
+        final Response<CrestCharacterStatus> response = login.getVerification(token).execute();
         if (!response.isSuccessful()) {
             throw new IOException("status request unsuccessful: " + response.message());
         }

@@ -2,7 +2,8 @@ package com.eve0.fleetmob.app.ui;
 
 import android.net.Uri;
 
-import com.eve0.fleetmob.app.crest.CrestService;
+import com.eve0.fleetmob.app.crest.CrestAuthenticator;
+import com.eve0.fleetmob.app.crest.EveService;
 import com.eve0.fleetmob.app.util.RX;
 
 import org.apache.commons.lang.StringUtils;
@@ -12,22 +13,24 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import rx.Observable;
+import rx.Subscription;
 
 @Singleton
-public class LoginPresenter extends CrestPresenter<LoginView> {
+public class LoginPresenter extends EvePresenter<LoginView> {
 
-    private final CrestService.CrestAuthenticator auth;
+    private final CrestAuthenticator auth;
 
     private final Uri loginURI;
 
     private String authCode = null;
+    private Subscription subscription;
 
     @Inject
     public LoginPresenter(
-            final Observable<CrestService> crest,
-            final CrestService.CrestAuthenticator auth,
+            final Observable<EveService> eve,
+            final CrestAuthenticator auth,
             final @Named("loginURI") Uri loginURI) {
-        super(crest);
+        super(eve);
         this.auth = auth;
         this.loginURI = loginURI;
     }
@@ -43,8 +46,17 @@ public class LoginPresenter extends CrestPresenter<LoginView> {
     }
 
     @Override
-    protected void onServiceChanged(CrestService service) {
-        RX.subscribe(() -> service.getCharacter(), (c) -> getView().showCharacter(c));
+    protected void onServiceChanged(EveService service) {
+        if (null != this.subscription) {
+            this.subscription.unsubscribe();
+            this.subscription = null;
+        }
+        if (null == service) {
+            getView().showCharacter(null);
+            return;
+        }
+        this.subscription =
+            RX.subscribe(() -> service.getCharacter(), (c) -> getView().showCharacter(c));
     }
 
     private void setAuthentication(final String authCode) {
@@ -52,6 +64,6 @@ public class LoginPresenter extends CrestPresenter<LoginView> {
             return;
         }
         this.authCode = authCode;
-        this.auth.setCode(authCode);
+        this.auth.setAuthCode(authCode);
     }
 }
