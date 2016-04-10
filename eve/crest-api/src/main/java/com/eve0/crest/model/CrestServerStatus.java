@@ -16,6 +16,9 @@ public final class CrestServerStatus extends CrestEntity {
     @JsonProperty
     private Map<String, Integer> userCounts = new HashMap<>();
 
+    @JsonProperty
+    private Map<String, String> serviceStatus = new HashMap<>();
+
     public String getServerName() {
         return serverName;
     }
@@ -32,8 +35,25 @@ public final class CrestServerStatus extends CrestEntity {
         return getInt("eve");
     }
 
+    public boolean getDustOnline() {
+        return getOnline("dust");
+    }
+
+    public boolean getEveOnline() {
+        return getOnline("eve");
+    }
+
+    public boolean getServerOnline() {
+        return getOnline("server");
+    }
+
     private int getInt(final String key) {
         final Integer a = userCounts.get(key);
         return (null == a) ? 0 : a;
+    }
+
+    private boolean getOnline(final String key) {
+        final String s = serviceStatus.get(key);
+        return s.equalsIgnoreCase("online");
     }
 }

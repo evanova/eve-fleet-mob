@@ -1,11 +1,11 @@
-package com.eve0.fleetmob.data.model;
+package com.eve0.fleetmob.app.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name = "users")
-public final class UserEntity {
+@Entity(name = "characters")
+final class CharacterEntity {
 
     @Id
     @Column

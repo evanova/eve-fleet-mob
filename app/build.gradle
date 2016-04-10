@@ -71,8 +71,6 @@ android {
 
 dependencies {
     compile project(':eve')
-    compile project(':data')
-
     compile 'commons-lang:commons-lang:2.6'
 
     compile 'com.android.support:support-v4:23.2.1'
@@ -90,6 +88,13 @@ dependencies {
     
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'org.slf4j:slf4j-android:1.7.21'
+
+
+    compile 'javax.persistence:persistence-api:1.0.2'
+
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.j256.ormlite:ormlite-jdbc:4.48'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
 
     provided 'javax.annotation:jsr250-api:1.0'
     compile 'com.google.dagger:dagger:2.0.2'

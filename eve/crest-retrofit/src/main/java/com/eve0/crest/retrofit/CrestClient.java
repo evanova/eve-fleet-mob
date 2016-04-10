@@ -11,7 +11,10 @@ import com.eve0.crest.model.CrestCharacterStatus;
 import com.eve0.crest.model.CrestContact;
 import com.eve0.crest.model.CrestContacts;
 import com.eve0.crest.CrestService;
+import com.eve0.crest.model.CrestServerStatus;
 import com.eve0.crest.model.CrestToken;
+
+
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -37,6 +40,9 @@ public final class CrestClient {
 
     interface ClientService {
 
+        @GET("/")
+        Call<CrestServerStatus> getServerStatus();
+
         @GET("/characters/{characterId}/contacts/")
         Call<CrestContacts> getUserContacts(@Path("characterId") long characterId);
 
@@ -44,25 +50,58 @@ public final class CrestClient {
         Call<CrestCharacter> getCharacter(@Path("characterId") long characterId);
     }
 
-    private final LoginService login;
+    private final LoginService loginService;
+    private final ClientService publicService;
 
     public CrestClient(final String clientID, final String clientKey) {
         Validate.isTrue(StringUtils.isNotBlank(clientID));
         Validate.isTrue(StringUtils.isNotBlank(clientKey));
 
-        this.login = CrestRetrofit.newLogin(clientID, clientKey).create(LoginService.class);
+        this.loginService = CrestRetrofit.newLogin(clientID, clientKey).create(LoginService.class);
+        this.publicService = CrestRetrofit.newClient().create(ClientService.class);
     }
 
-    public CrestService getFromAuthCode(final String authCode) throws IOException {
-        return getFromToken(obtainToken(this.login, authCode).getAccessToken());
+    public final CrestToken getToken(final String authCode) throws IOException {
+        return obtainToken(this.loginService, authCode);
     }
 
-    public CrestService getFromToken(final String token) throws IOException {
-        final CrestCharacterStatus status = obtainStatus(this.login, token);
+    public final CrestService getService() throws IOException {
+        return new CrestService() {
+            @Override
+            public CrestServerStatus getServerStatus() {
+                try {
+                    return publicService.getServerStatus().execute().body();
+                }
+                catch (IOException e) {
+                    LOG.error(e.getLocalizedMessage(), e);
+                    return null;
+                }
+            }
+
+            @Override
+            public CrestCharacterStatus getCharacterStatus() {
+                throw new IllegalStateException("not authenticated");
+            }
+
+            @Override
+            public CrestCharacter getCharacter() {
+                throw new IllegalStateException("not authenticated");
+            }
+
+            @Override
+            public List<CrestContact> getCharacterContacts() {
+                throw new IllegalStateException("not authenticated");
+            }
+        };
+    }
+
+    public final CrestService getService(final String token) throws IOException {
+
+        final CrestCharacterStatus status = obtainStatus(this.loginService, token);
         final ClientService service = CrestRetrofit.newClient(token).create(ClientService.class);
         return new CrestService() {
             @Override
-            public List<CrestContact> getContacts() {
+            public List<CrestContact> getCharacterContacts() {
                 try {
                     final CrestContacts contacts = service.getUserContacts(status.getCharacterID()).execute().body();
                     return contacts.getItems();
@@ -76,7 +115,9 @@ public final class CrestClient {
             @Override
             public CrestCharacter getCharacter() {
                 try {
-                    return service.getCharacter(status.getCharacterID()).execute().body();
+                    final CrestCharacter c = service.getCharacter(status.getCharacterID()).execute().body();
+                    c.setAccessToken(token);
+                    return c;
                 }
                 catch (IOException e) {
                     LOG.error(e.getLocalizedMessage(), e);
@@ -87,6 +128,17 @@ public final class CrestClient {
             @Override
             public CrestCharacterStatus getCharacterStatus() {
                 return status;
+            }
+
+            @Override
+            public CrestServerStatus getServerStatus() {
+                try {
+                    return service.getServerStatus().execute().body();
+                }
+                catch (IOException e) {
+                    LOG.error(e.getLocalizedMessage(), e);
+                    return null;
+                }
             }
         };
     }

@@ -9,4 +9,5 @@ public interface LoginView {
     void showLogin(final Uri uri);
 
     void showCharacter(final EveCharacter pilot);
+
 }

@@ -3,7 +3,6 @@ package com.eve0.fleetmob.app.crest;
 import android.content.Context;
 import android.net.Uri;
 
-import com.eve0.crest.CrestService;
 import com.eve0.crest.retrofit.CrestClient;
 import com.eve0.fleetmob.app.inject.AbstractModule;
 import com.jakewharton.rxrelay.BehaviorRelay;
@@ -12,8 +11,6 @@ import com.jakewharton.rxrelay.Relay;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -27,18 +24,19 @@ import rx.schedulers.Schedulers;
 public class CrestModule extends AbstractModule {
     private static final Logger LOG = LoggerFactory.getLogger(CrestModule.class);
 
-    private final CrestClient client;
+    private final EveServiceImpl impl;
     private final Uri loginURI;
 
-    private final Relay<String, String> subject;
-    private final Observable<EveService> service;
+    private final Relay<EveService, EveService> subject;
+
+    private final Observable<EveService> observable;
 
     public CrestModule(final Context context) {
         super(context);
-
-        this.client = new CrestClient(
+        this.impl = new EveServiceImpl(
+            new CrestClient(
                 getStringMetaData("crest.id"),
-                getStringMetaData("crest.key"));
+                getStringMetaData("crest.key")));
 
         this.loginURI =
                 Uri.parse(new StringBuilder()
@@ -51,21 +49,11 @@ public class CrestModule extends AbstractModule {
                 .toString());
 
         this.subject = BehaviorRelay.create();
-        this.service =
-            this.subject
-            .asObservable()
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .map(authCode -> {
-                try {
-                    final CrestService crest = this.client.getFromAuthCode(authCode);
-                    return CrestMapper.map(crest);
-                }
-                catch (IOException e) {
-                    LOG.error(e.getLocalizedMessage(), e);
-                    return null;
-                }
-            });
+        this.observable =
+                this.subject
+                .share()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io());
     }
 
     @Provides
@@ -77,19 +65,29 @@ public class CrestModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public CrestClient provideClient() {
-        return this.client;
-    }
-
-    @Provides
-    @Singleton
     public CrestAuthenticator provideAuthenticator() {
-        return (authCode -> subject.call(authCode));
+        return new CrestAuthenticator() {
+            @Override
+            public void setAuthCode(String authCode) {
+                Observable.just(authCode)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
+                    .subscribe(c -> subject.call(impl.setClientAuth(c) ? impl : null));
+            }
+
+            @Override
+            public void setAuthToken(String authToken) {
+                Observable.just(authToken)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
+                    .subscribe(c -> subject.call(impl.setClientToken(c) ? impl : null));
+            }
+        };
     }
 
     @Provides
     @Singleton
     public Observable<EveService> provideService() {
-        return this.service;
+        return this.observable;
     }
 }

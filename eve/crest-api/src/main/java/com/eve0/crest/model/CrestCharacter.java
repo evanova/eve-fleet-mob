@@ -1,5 +1,6 @@
 package com.eve0.crest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -17,6 +18,9 @@ public class CrestCharacter extends CrestItem {
     @JsonDeserialize(using = RefDeserializer.class)
     private String capsuleerRef;
 
+    @JsonIgnore
+    private String accessToken;
+
     public boolean getNPC() {
         return isNPC;
     }
@@ -27,5 +31,13 @@ public class CrestCharacter extends CrestItem {
 
     public String getCapsuleerRef() {
         return capsuleerRef;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 }

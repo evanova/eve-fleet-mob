@@ -4,13 +4,16 @@ import java.util.List;
 import com.eve0.crest.model.CrestCharacter;
 import com.eve0.crest.model.CrestCharacterStatus;
 import com.eve0.crest.model.CrestContact;
+import com.eve0.crest.model.CrestServerStatus;
 
 public interface CrestService {
 
-    List<CrestContact> getContacts();
+    CrestServerStatus getServerStatus();
 
     CrestCharacterStatus getCharacterStatus();
 
     CrestCharacter getCharacter();
+
+    List<CrestContact> getCharacterContacts();
 
 }

@@ -1,5 +1,6 @@
 package com.eve0.crest.retrofit;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,9 +60,11 @@ final class CrestRetrofit {
                     chain
                     .request()
                     .newBuilder()
-                    .addHeader("Authorization", "Bearer " + token)
                     .addHeader("Host", CREST)
                     .addHeader("User-Agent", AGENT);
+            if (StringUtils.isNotBlank(token)) {
+                builder.addHeader("Authorization", "Bearer " + token);
+            }
             return chain.proceed(builder.build());
         }
     }
@@ -75,6 +78,11 @@ final class CrestRetrofit {
                 .addInterceptor(new LoginInterceptor(toAuth(clientID, clientKey)))
                 .build(),
                 "https://" + LOGIN + "/");
+    }
+
+
+    public static Retrofit newClient() {
+        return newClient(null);
     }
 
     public static Retrofit newClient(final String token) {

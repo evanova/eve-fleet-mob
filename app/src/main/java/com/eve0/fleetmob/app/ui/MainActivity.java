@@ -68,5 +68,11 @@ public class MainActivity extends AbstractActivity implements LoginView {
     @Override
     public void showCharacter(EveCharacter pilot) {
         LOG.error(ToStringBuilder.reflectionToString(pilot));
+        if (null == pilot) {
+            setTitle("Not logged in");
+        }
+        else {
+            setTitle(pilot.getName());
+        }
     }
 }

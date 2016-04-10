@@ -1,15 +1,10 @@
 package com.eve0.fleetmob.app.util;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
 
 
 public final class EveImages {
@@ -34,16 +29,8 @@ public final class EveImages {
         p(intoView.getContext()).load(url(IMAGE_ITEM, typeID)).into(intoView);
     }
 
-    public static void loadItemImage(final long typeID, final Activity intoView) {
-        load(url(IMAGE_ITEM, typeID), intoView);
-    }
-
     public static void loadCharacterImage(final long ownerId, final ImageView intoView) {
         p(intoView.getContext()).load(url(IMAGE_CHARACTER, ownerId)).into(intoView);
-    }
-
-    public static void loadCharacterImage(final long ownerId, final Activity intoView) {
-        load(url(IMAGE_CHARACTER, ownerId), intoView);
     }
 
     public static void loadCharacterIcon(final long ownerId, final ImageView intoView) {
@@ -57,10 +44,6 @@ public final class EveImages {
 
     public static void loadCorporationImage(final long ownerId, final ImageView intoView) {
         p(intoView.getContext()).load(url(IMAGE_CORPORATION, ownerId)).into(intoView);
-    }
-
-    public static void loadCorporationImage(final long ownerId, final Activity intoView) {
-        load(url(IMAGE_CORPORATION, ownerId), intoView);
     }
 
     public static void loadAllianceIcon(final long ownerId, final ImageView intoView) {
@@ -105,25 +88,6 @@ public final class EveImages {
 
     public static void load(final String uri, final Context context, final RemoteViews views, int target, int[] widgetIds) {
         p(context).load(uri).into(views, target, widgetIds);
-    }
-
-    public static void load(final String uri, final Activity activity) {
-
-        final Rect rect = new Rect();
-        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-
-        RX.subscribe(() -> {
-                    try {
-                        return p(activity).load(uri).resize(rect.width(), rect.height()).centerCrop().get();
-                    } catch (IOException e) {
-                        return null;
-                    }
-                },
-                bitmap -> {
-                    if (null != bitmap) {
-                        activity.getWindow().setBackgroundDrawable(new BitmapDrawable(activity.getResources(), bitmap));
-                    }
-                });
     }
 
     private static Picasso p;

@@ -1,4 +1,3 @@
 include "eve:crest-api"
 include "eve:crest-retrofit"
-include "data"
 include "app"
