@@ -1,6 +1,6 @@
-package com.eve0.fleetmob.app.crest;
+package com.eve0.fleetmob.app.eve;
 
-public interface CrestAuthenticator {
+public interface EveAuthenticator {
 
     void setAuthCode(final String authCode);
 

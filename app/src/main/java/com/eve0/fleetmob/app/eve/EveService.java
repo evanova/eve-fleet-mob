@@ -1,4 +1,4 @@
-package com.eve0.fleetmob.app.crest;
+package com.eve0.fleetmob.app.eve;
 
 import com.eve0.fleetmob.app.model.EveCharacter;
 import com.eve0.fleetmob.app.model.EveContact;

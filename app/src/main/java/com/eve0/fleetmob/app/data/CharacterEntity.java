@@ -18,9 +18,6 @@ final class CharacterEntity {
     private String characterName;
 
     @Column
-    private String token;
-
-    @Column
     private String refreshToken;
 
     public long getId() {
@@ -45,14 +42,6 @@ final class CharacterEntity {
 
     public void setCharacterName(String characterName) {
         this.characterName = characterName;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public String getRefreshToken() {

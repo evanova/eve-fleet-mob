@@ -1,4 +1,4 @@
-package com.eve0.fleetmob.app.ui;
+package com.eve0.fleetmob.app.ui.login;
 
 import android.net.Uri;
 

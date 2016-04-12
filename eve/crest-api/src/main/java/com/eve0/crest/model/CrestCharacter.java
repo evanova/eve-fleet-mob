@@ -19,7 +19,7 @@ public class CrestCharacter extends CrestItem {
     private String capsuleerRef;
 
     @JsonIgnore
-    private String accessToken;
+    private String refreshToken;
 
     public boolean getNPC() {
         return isNPC;
@@ -33,11 +33,11 @@ public class CrestCharacter extends CrestItem {
         return capsuleerRef;
     }
 
-    public String getAccessToken() {
-        return accessToken;
+    public String getRefreshToken() {
+        return refreshToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 }

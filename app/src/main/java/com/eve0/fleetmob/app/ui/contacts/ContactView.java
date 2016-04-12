@@ -1,4 +1,4 @@
-package com.eve0.fleetmob.app.ui;
+package com.eve0.fleetmob.app.ui.contacts;
 
 import com.eve0.fleetmob.app.model.EveCharacter;
 import com.eve0.fleetmob.app.model.EveContact;

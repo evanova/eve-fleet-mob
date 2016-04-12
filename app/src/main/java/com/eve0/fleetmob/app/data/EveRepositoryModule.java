@@ -10,15 +10,15 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class RepositoryModule extends AbstractModule {
+public class EveRepositoryModule extends AbstractModule {
 
-    public RepositoryModule(Context context) {
+    public EveRepositoryModule(Context context) {
         super(context);
     }
 
     @Provides
     @Singleton
-    ApplicationRepository provideData() {
-        return new ApplicationRepositoryImpl(getContext());
+    EveRepository provideData() {
+        return new EveRepositoryImpl(getContext());
     }
 }

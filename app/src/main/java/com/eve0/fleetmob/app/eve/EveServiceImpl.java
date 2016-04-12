@@ -1,6 +1,7 @@
-package com.eve0.fleetmob.app.crest;
+package com.eve0.fleetmob.app.eve;
 
 import com.eve0.crest.CrestService;
+import com.eve0.crest.model.CrestToken;
 import com.eve0.crest.retrofit.CrestClient;
 import com.eve0.fleetmob.app.model.EveCharacter;
 import com.eve0.fleetmob.app.model.EveContact;
@@ -22,9 +23,10 @@ class EveServiceImpl implements EveService {
         this.client = client;
     }
 
-    public boolean setClientToken(final String token) {
+    public boolean setClientToken(final String refresh) {
+        LOG.error("setClientToken {}", refresh);
         try {
-            this.service = client.getService(token);
+            this.service = client.fromRefreshToken(refresh);
             return true;
         }
         catch (IOException e) {
@@ -35,8 +37,9 @@ class EveServiceImpl implements EveService {
     }
 
     public boolean setClientAuth(final String authCode) {
+        LOG.error("setClientAuth {}", authCode);
         try {
-            setClientToken(client.getToken(authCode).getAccessToken());
+            this.service = client.fromAuthCode(authCode);
             return true;
         }
         catch (IOException e) {
@@ -59,6 +62,6 @@ class EveServiceImpl implements EveService {
         if (null == this.service) {
             return null;
         }
-        return CrestMapper.map(this.service.getCharacterStatus(), this.service.getCharacter());
+        return CrestMapper.map(this.service.getCharacter());
     }
 }

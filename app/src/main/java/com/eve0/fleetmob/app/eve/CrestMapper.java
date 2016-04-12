@@ -1,6 +1,5 @@
-package com.eve0.fleetmob.app.crest;
+package com.eve0.fleetmob.app.eve;
 
-import com.eve0.crest.CrestService;
 import com.eve0.crest.model.CrestCharacter;
 import com.eve0.crest.model.CrestCharacterStatus;
 import com.eve0.crest.model.CrestContact;
@@ -19,34 +18,19 @@ final class CrestMapper {
 
     private CrestMapper() {}
 
-    public static EveService map(final CrestService service) {
-        return new EveService() {
-            @Override
-            public List<EveContact> getContacts() {
-                return map(service.getCharacterContacts());
-            }
-
-            @Override
-                public EveCharacter getCharacter() {
-                    final CrestCharacterStatus status = service.getCharacterStatus();
-                    final CrestCharacter character = service.getCharacter();
-                    return map(status, character);
-            }
-        };
-    }
-
-    public static EveCharacter map(final CrestCharacterStatus status, final CrestCharacter character) {
+    public static EveCharacter map(final CrestCharacter character) {
         final EveCharacter returned = new EveCharacter();
-        returned.setName(status.getCharacterName());
-        returned.setID(status.getCharacterID());
+        returned.setName(character.getName());
+        returned.setID(character.getId());
         returned.setNpc(character.getNPC());
         returned.setHref(character.getCapsuleerRef());
-        returned.setAccessToken(character.getAccessToken());
+        returned.setToken(character.getRefreshToken());
         return returned;
     }
 
     public static EveContact map(final CrestContact contact) {
         if (null == contact.getCharacter()) {
+            //character was bio-massed most likely
             LOG.warn("Contact has no character {}", ToStringBuilder.reflectionToString(contact));
             return null;
         }

@@ -8,7 +8,7 @@ public class EveCharacter {
 
     private boolean npc;
 
-    private String accessToken;
+    private String refreshToken;
 
     public long getID() {
         return ID;
@@ -42,11 +42,11 @@ public class EveCharacter {
         this.npc = npc;
     }
 
-    public String getAccessToken() {
-        return accessToken;
+    public String getToken() {
+        return refreshToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 }

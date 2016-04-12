@@ -8,22 +8,39 @@ import android.provider.Browser;
 import com.eve0.fleetmob.app.ApplicationComponent;
 import com.eve0.fleetmob.app.R;
 import com.eve0.fleetmob.app.model.EveCharacter;
+import com.eve0.fleetmob.app.ui.drawer.DrawerPresenter;
+import com.eve0.fleetmob.app.ui.drawer.DrawerView;
+import com.eve0.fleetmob.app.ui.drawer.MainDrawer;
+import com.eve0.fleetmob.app.ui.login.LoginPresenter;
+import com.eve0.fleetmob.app.ui.login.LoginView;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
-public class MainActivity extends AbstractActivity implements LoginView {
+public class MainActivity extends AbstractActivity implements LoginView, DrawerView {
     private static final Logger LOG = LoggerFactory.getLogger(MainActivity.class);
+
+    private DrawerView drawerView;
 
     @Inject
     LoginPresenter login;
 
+    @Inject
+    DrawerPresenter drawer;
+
     @Override
     protected void inject(ApplicationComponent component) {
         component.inject(this);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -36,26 +53,37 @@ public class MainActivity extends AbstractActivity implements LoginView {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        LOG.error("onStart {}", getIntent());
-        if (Intent.ACTION_VIEW.equals(getIntent().getAction())) {
-            return;
-        }
-        this.login.startAuthentication(false);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        this.drawerView = new MainDrawer(this, savedInstanceState) {
+            @Override
+            protected void onAddCharacter() {
+                login.login();
+            }
+
+            @Override
+            protected void onSelectCharacter(final long charID) {
+                login.login(charID);
+            }
+        };
+        this.drawer.attachView(this);
         this.login.attachView(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        this.drawer.detachView(false);
         this.login.detachView(false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (this.drawer != null && this.drawerView.isDrawerOpened()) {
+            this.drawerView.closeDrawer();
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override
@@ -66,13 +94,41 @@ public class MainActivity extends AbstractActivity implements LoginView {
     }
 
     @Override
+    public void setSelectedCharacter(EveCharacter character) {
+        LOG.error("setSelectedCharacter {}", ToStringBuilder.reflectionToString(character));
+        this.drawerView.setSelectedCharacter(character);
+    }
+
+    @Override
+    public void setCharacters(List<EveCharacter> characters) {
+        LOG.error("setCharacters {}", characters.size());
+        this.drawerView.setCharacters(characters);
+    }
+
+    @Override
     public void showCharacter(EveCharacter pilot) {
-        LOG.error(ToStringBuilder.reflectionToString(pilot));
+        LOG.error("showCharacter {}", ToStringBuilder.reflectionToString(pilot));
         if (null == pilot) {
             setTitle("Not logged in");
         }
         else {
             setTitle(pilot.getName());
+            this.drawerView.setSelectedCharacter(pilot);
         }
+    }
+
+    @Override
+    public void openDrawer() {
+        this.drawerView.openDrawer();
+    }
+
+    @Override
+    public void closeDrawer() {
+        this.drawerView.closeDrawer();
+    }
+
+    @Override
+    public boolean isDrawerOpened() {
+        return this.drawerView.isDrawerOpened();
     }
 }

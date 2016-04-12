@@ -16,16 +16,16 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
-final class ApplicationDatabase extends OrmLiteSqliteOpenHelper {
-    private static final Logger LOG = LoggerFactory.getLogger(ApplicationDatabase.class);
+final class EveDatabase extends OrmLiteSqliteOpenHelper {
+    private static final Logger LOG = LoggerFactory.getLogger(EveDatabase.class);
     private static final String DATABASE_NAME = "fm.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
-    private static ApplicationDatabase database;
+    private static EveDatabase database;
 
     private Dao<CharacterEntity, Long> characterDAO;
 
-    private ApplicationDatabase(Context context) {
+    private EveDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         try {
             this.characterDAO = getDao(CharacterEntity.class);
@@ -35,9 +35,9 @@ final class ApplicationDatabase extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public static ApplicationDatabase from(final Context context) {
+    public static EveDatabase from(final Context context) {
         if (null == database) {
-            database = new ApplicationDatabase(context);
+            database = new EveDatabase(context);
         }
         return database;
     }
@@ -74,6 +74,26 @@ final class ApplicationDatabase extends OrmLiteSqliteOpenHelper {
         catch (SQLException e) {
             LOG.error(e.getLocalizedMessage(), e);
             return Collections.emptyList();
+        }
+    }
+
+    public List<CharacterEntity> listCharacters(final long limit) {
+        try {
+            return this.characterDAO.queryBuilder().limit(limit).query();
+        }
+        catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage(), e);
+            return Collections.emptyList();
+        }
+    }
+
+    public CharacterEntity getCharacter(final long id) {
+        try {
+            return this.characterDAO.queryForId(id);
+        }
+        catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage(), e);
+            return null;
         }
     }
 

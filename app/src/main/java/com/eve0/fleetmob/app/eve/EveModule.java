@@ -1,4 +1,4 @@
-package com.eve0.fleetmob.app.crest;
+package com.eve0.fleetmob.app.eve;
 
 import android.content.Context;
 import android.net.Uri;
@@ -21,9 +21,10 @@ import rx.Observable;
 import rx.schedulers.Schedulers;
 
 @Module
-public class CrestModule extends AbstractModule {
-    private static final Logger LOG = LoggerFactory.getLogger(CrestModule.class);
+public class EveModule extends AbstractModule {
+    private static final Logger LOG = LoggerFactory.getLogger(EveModule.class);
 
+    private final EveImages images;
     private final EveServiceImpl impl;
     private final Uri loginURI;
 
@@ -31,8 +32,10 @@ public class CrestModule extends AbstractModule {
 
     private final Observable<EveService> observable;
 
-    public CrestModule(final Context context) {
+    public EveModule(final Context context) {
         super(context);
+        this.images = new EveImages(context);
+
         this.impl = new EveServiceImpl(
             new CrestClient(
                 getStringMetaData("crest.id"),
@@ -65,8 +68,8 @@ public class CrestModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public CrestAuthenticator provideAuthenticator() {
-        return new CrestAuthenticator() {
+    public EveAuthenticator provideAuthenticator() {
+        return new EveAuthenticator() {
             @Override
             public void setAuthCode(String authCode) {
                 Observable.just(authCode)
@@ -89,5 +92,11 @@ public class CrestModule extends AbstractModule {
     @Singleton
     public Observable<EveService> provideService() {
         return this.observable;
+    }
+
+    @Provides
+    @Singleton
+    public EveImages provideImages() {
+        return this.images;
     }
 }
