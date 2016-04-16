@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_drawer_market"
+        android:icon="@drawable/eveui_market"
+        android:title="@string/drawer.market"/>
+    <item
+        android:id="@+id/menu_drawer_items"
+        android:icon="@drawable/eveui_items"
+        android:title="@string/drawer.items"/>
+    <item
+        android:id="@+id/menu_drawer_routes"
+        android:icon="@drawable/eveui_map"
+        android:title="@string/drawer.routes"/>
+</menu>

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eve0.fleetmob.app">
+    package="org.devfleet.mob.app">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -11,7 +11,9 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".Application"
         android:allowBackup="true"
@@ -28,12 +30,14 @@
         <meta-data
             android:name="crest.redirect"
             android:value="fleet://api.eveonline.com/redirect"/>
-        <meta-data
+      <!--  <meta-data
             android:name="crest.scopes"
-            android:value="publicData,characterContactsRead,characterContactsWrite"/>
+            android:value="publicData,characterContactsRead,characterContactsWrite,characterFittingsRead,characterFittingsWrite,characterNavigationWrite"/>
+-->
         <activity
             android:name=".ui.MainActivity"
-            android:launchMode="singleTask">
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,7 +55,6 @@
                     android:scheme="fleet" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

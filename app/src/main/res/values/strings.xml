@@ -6,4 +6,14 @@
 
     <string name="title_message_title">%1$s</string>
     <string name="title_message_subtitle">%1$s</string>
+
+    <string name="drawer.character.add">Add Character</string>
+    <string name="drawer.character.add.description">Lets you safely log in to Eve Online to add a character.</string>
+    <string name="drawer.character">Character</string>
+    <string name="drawer.contacts">Contacts</string>
+    <string name="drawer.fittings">Fittings</string>
+    <string name="drawer.fleets">Fleets</string>
+    <string name="drawer.market">Market</string>
+    <string name="drawer.items">Items</string>
+    <string name="drawer.routes">Routes</string>
 </resources>

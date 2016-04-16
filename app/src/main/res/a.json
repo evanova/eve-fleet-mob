@@ -1,86 +1,721 @@
 {
-  "totalCount_str": "2",
+  "totalCount_str": "23",
   "items": [
     {
-      "takesFleetWarp": true,
-      "squadID": 3000110005634,
-      "solarSystem": {
-        "id_str": "30000140",
-        "href": "http://localhost:26004/solarsystems/30000140/",
-        "id": 30000140,
-        "name": "Maurasi"
-      },
-      "wingID": 2000110005634,
-      "boosterID_str": "3",
-      "roleID": 3,
+      "standing": 10.0,
       "character": {
-        "name": "One One",
+        "name": "Aran Ytura",
+        "corporation": {
+          "name": "SYNDAX CORPORATION",
+          "isNPC": false,
+          "href": "https://crest-tq.eveonline.com/corporations/98028768/",
+          "id_str": "98028768",
+          "logo": {
+            "32x32": {
+              "href": "http://imageserver.eveonline.com/Corporation/98028768_32.png"
+            },
+            "64x64": {
+              "href": "http://imageserver.eveonline.com/Corporation/98028768_64.png"
+            },
+            "128x128": {
+              "href": "http://imageserver.eveonline.com/Corporation/98028768_128.png"
+            },
+            "256x256": {
+              "href": "http://imageserver.eveonline.com/Corporation/98028768_256.png"
+            }
+          },
+          "id": 98028768
+        },
         "isNPC": false,
-        "href": "http://localhost:26004/characters/90000001/",
-        "id_str": "90000001",
-        "id": 90000001,
+        "href": "https://crest-tq.eveonline.com/characters/90135418/",
         "capsuleer": {
-          "href": "http://localhost:26004/characters/90000001/capsuleer/"
-        }
+          "href": "https://crest-tq.eveonline.com/characters/90135418/capsuleer/"
+        },
+        "portrait": {
+          "32x32": {
+            "href": "http://imageserver.eveonline.com/Character/90135418_32.jpg"
+          },
+          "64x64": {
+            "href": "http://imageserver.eveonline.com/Character/90135418_64.jpg"
+          },
+          "128x128": {
+            "href": "http://imageserver.eveonline.com/Character/90135418_128.jpg"
+          },
+          "256x256": {
+            "href": "http://imageserver.eveonline.com/Character/90135418_256.jpg"
+          }
+        },
+        "id": 90135418,
+        "id_str": "90135418"
       },
-      "boosterID": 3,
-      "boosterName": "Squad Booster",
-      "squadID_str": "3000110005634",
-      "roleID_str": "3",
-      "roleName": "Squad Commander (Boss)",
-      "ship": {
-        "id_str": "670",
-        "href": "http://localhost:26004/types/670/",
-        "id": 670,
-        "name": "Capsule"
+      "contact": {
+        "id_str": "90135418",
+        "href": "https://crest-tq.eveonline.com/characters/90135418/",
+        "name": "Aran Ytura",
+        "id": 90135418
       },
-      "joinTime": "2016-04-03T14:47:02",
-      "wingID_str": "2000110005634"
+      "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/90135418/",
+      "contactType": "Character",
+      "watched": false,
+      "blocked": false
     },
     {
-      "takesFleetWarp": true,
-      "squadID": 3000110005634,
-      "solarSystem": {
-        "id_str": "30000145",
-        "href": "http://localhost:26004/solarsystems/30000145/",
-        "id": 30000145,
-        "name": "New Caldari"
-      },
-      "wingID": 2000110005634,
-      "boosterID_str": "0",
-      "roleID": 4,
+      "standing": 10.0,
       "character": {
-        "name": "Two One",
+        "name": "Benedict Pope",
+        "corporation": {
+          "name": "New Eden Inventions",
+          "isNPC": false,
+          "href": "https://crest-tq.eveonline.com/corporations/452449513/",
+          "id_str": "452449513",
+          "logo": {
+            "32x32": {
+              "href": "http://imageserver.eveonline.com/Corporation/452449513_32.png"
+            },
+            "64x64": {
+              "href": "http://imageserver.eveonline.com/Corporation/452449513_64.png"
+            },
+            "128x128": {
+              "href": "http://imageserver.eveonline.com/Corporation/452449513_128.png"
+            },
+            "256x256": {
+              "href": "http://imageserver.eveonline.com/Corporation/452449513_256.png"
+            }
+          },
+          "id": 452449513
+        },
         "isNPC": false,
-        "href": "http://localhost:26004/characters/90000002/",
-        "id_str": "90000002",
-        "id": 90000002,
+        "href": "https://crest-tq.eveonline.com/characters/418028148/",
         "capsuleer": {
-          "href": "http://localhost:26004/characters/90000002/capsuleer/"
+          "href": "https://crest-tq.eveonline.com/characters/418028148/capsuleer/"
+        },
+        "portrait": {
+          "32x32": {
+            "href": "http://imageserver.eveonline.com/Character/418028148_32.jpg"
+          },
+          "64x64": {
+            "href": "http://imageserver.eveonline.com/Character/418028148_64.jpg"
+          },
+          "128x128": {
+            "href": "http://imageserver.eveonline.com/Character/418028148_128.jpg"
+          },
+          "256x256": {
+            "href": "http://imageserver.eveonline.com/Character/418028148_256.jpg"
+          }
+        },
+        "id": 418028148,
+        "id_str": "418028148"
+      },
+      "contact": {
+        "id_str": "418028148",
+        "href": "https://crest-tq.eveonline.com/characters/418028148/",
+        "name": "Benedict Pope",
+        "id": 418028148
+      },
+      "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/418028148/",
+      "contactType": "Character",
+      "watched": false,
+      "blocked": false
+    },
+    {
+      "standing": 10.0,
+      "character": {
+        "name": "CCP FoxFour.",
+        "corporation": {
+          "name": "C C P",
+          "isNPC": false,
+          "href": "https://crest-tq.eveonline.com/corporations/109299958/",
+          "id_str": "109299958",
+          "logo": {
+            "32x32": {
+              "href": "http://imageserver.eveonline.com/Corporation/109299958_32.png"
+            },
+            "64x64": {
+              "href": "http://imageserver.eveonline.com/Corporation/109299958_64.png"
+            },
+            "128x128": {
+              "href": "http://imageserver.eveonline.com/Corporation/109299958_128.png"
+            },
+            "256x256": {
+              "href": "http://imageserver.eveonline.com/Corporation/109299958_256.png"
+            }
+          },
+          "id": 109299958
+        },
+        "isNPC": false,
+        "mercenary": {
+          "href": "https://crest-tq.eveonline.com/characters/2104146184/mercenary/"
+        },
+        "href": "https://crest-tq.eveonline.com/characters/2104146184/",
+        "id_str": "2104146184",
+        "portrait": {
+          "32x32": {
+            "href": "http://dust.dyn.ccpgamescdn.com/portraits/female_gallente_32.jpg"
+          },
+          "64x64": {
+            "href": "http://dust.dyn.ccpgamescdn.com/portraits/female_gallente_64.jpg"
+          },
+          "128x128": {
+            "href": "http://dust.dyn.ccpgamescdn.com/portraits/female_gallente_128.jpg"
+          },
+          "256x256": {
+            "href": "http://dust.dyn.ccpgamescdn.com/portraits/female_gallente_256.jpg"
+          }
+        },
+        "id": 210
+        0
+        4
+        -10
+        12: 24
+        :
+        40.284
+        13850
+        -14711
+        /
+        com
+        .
+        eve0
+        .
+        fleetmob
+        .
+        app
+        D
+        /
+        OkHttp: 4146184
+      },
+      "contact": {
+        "id_str": "2104146184",
+        "href": "https://crest-tq.eveonline.com/characters/2104146184/",
+        "name": "CCP FoxFour.",
+        "id": 2104146184
+      },
+      "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/2104146184/",
+      "contactType": "Character",
+      "watched": true,
+      "blocked": false
+    },
+    {
+      "standing": 10.0,
+      "character": {
+        "name": "Chingy Chonga",
+        "corporation": {
+          "name": "Ministry of War",
+          "isNPC": true,
+          "href": "https://crest-tq.eveonline.com/corporations/1000080/",
+          "id_str": "1000080",
+          "logo": {
+            "32x32": {
+              "href": "http://imageserver.eveonline.com/Corporation/1000080_32.png"
+            },
+            "64x64": {
+              "href": "http://imageserver.eveonline.com/Corporation/1000080_64.png"
+            },
+            "128x128": {
+              "href": "http://imageserver.eveonline.com/Corporation/1000080_128.png"
+            },
+            "256x256": {
+              "href": "http://imageserver.eveonline.com/Corporation/1000080_256.png"
+            }
+          },
+          "id": 1000080
+        },
+        "isNPC": false,
+        "href": "https://crest-tq.eveonline.com/characters/254186884/",
+        "capsuleer": {
+          "href": "https://crest-tq.eveonline.com/characters/254186884/capsuleer/"
+        },
+        "portrait": {
+          "32x32": {
+            "href": "http://imageserver.eveonline.com/Character/254186884_32.jpg"
+          },
+          "64x64": {
+            "href": "http://imageserver.eveonline.com/Character/254186884_64.jpg"
+          },
+          "128x128": {
+            "href": "http://imageserver.eveonline.com/Character/254186884_128.jpg"
+          },
+          "256x256": {
+            "href": "http://imageserver.eveonline.com/Character/254186884_256.jpg"
+          }
+        },
+        "id": 254186884,
+        "id_str": "254186884"
+      },
+      "contact": {
+        "id_str": "254186884",
+        "href": "https://crest-tq.eveonline.com/characters/254186884/",
+        "name": "Chingy Chonga",
+        "id": 254186884
+      },
+      "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/254186884/",
+      "contactType": "Character",
+      "watched": true,
+      "blocked": false
+    },
+    {
+      "standing": 10.0,
+      "character": {
+        "name": "Eolhe",
+        "corporation": {
+          "name": "Agents of Self Destruction",
+          "isNPC": false,
+          "href": "https://crest-tq.eveonline.com/corporations/98424110/",
+          "id_str": "98424110",
+          "logo": {
+            "32x32": {
+              "href": "http://imageserver.eveonline.com/Corporation/98424110_32.png"
+            },
+            "64x64": {
+              "href": "http://imageserver.eveonline.com/Corporation/98424110_64.png"
+            },
+            "128x128": {
+              "href": "http://imageserver.eveonline.com/Corporation/98424110_128.png"
+            },
+            "256x256": {
+              "href": "http://imageserver.eveonline.com/Corporation/98424110_256.png"
+            }
+          },
+          "id": 98424110
+        },
+        "isNPC": false,
+        "href": "https://crest-tq.eveonline.com/characters/91683147/",
+        "capsuleer": {
+          "href": "https://crest-tq.eveonline.com/characters/91683147/capsuleer/"
+        },
+        "portrait": {
+          "32x32": {
+            "href": "http://imageserver.eveonline.com/Character/91683147_32.jpg"
+          },
+          "64x64": {
+            "href": "http://imageserver.eveonline.com/Character/91683147_64.jpg"
+          },
+          "128x128": {
+            "href": "http://imageserver.eveonline.com/Character/91683147_128.jpg"
+          },
+          "256x256": {
+            "href": "http://imageserver.eveonline.com/Character/91683147_256.jpg"
+          }
+        },
+        "id": 91683147,
+        "id_str": "91683147"
+      },
+      "contact": {
+        "id_str": "91683147",
+        "href": "https://crest-tq.eveonline.com/characters/91683147/",
+        "name": "Eolhe",
+        "id": 91683147
+      },
+      "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/91683147/",
+      "contactType": "Character",
+      "watched": false,
+      "blocked": false
+    },
+    {
+      "standing": 10.0,
+      "character": {
+        "name": "Ethereal Inquisitor",
+        "corporation": {
+          "name": "Exiled Industrials of the Red Sun",
+          "isNPC": false,
+          "href": "https://crest-tq.eveonline.com/corporations/98081209/",
+          "id_str": "98081209",
+          "logo": {
+            "32x32": {
+              "href": "http://imageserver.eveonline.com/Corporation/98081209_32.png"
+            },
+            "64x64": {
+              "href": "http://imageserver.eveonline.com/Corporation/98081209_64.png"
+            },
+            "128x128": {
+              "href": "http://imageserver.eveonline.com/Corporation/98081209_128.png"
+            },
+            "256x256": {
+              "href": "http://imageserver.eveonline.com/Corporation/98081209_256.png"
+            }
+          },
+          "id": 98081209
+        },
+        "isNPC": false,
+        "href": "https://crest-tq.eveonline.com/characters/928623249/",
+        "capsuleer": {
+          "href": "https://crest-tq.eveonline.com/characters/928623249/capsuleer/"
+        },
+        "portrait": {
+          "32x32": {
+            "href": "http://imageserver.eveonline.com/Character/928623249_32.jpg"
+          },
+          "64x64": {
+            "href": "http://imageserve
+            0
+            4
+            -10
+            12: 24
+            :
+            40.284
+            13850
+            -14711
+            /
+            com
+            .
+            eve0
+            .
+            fleetmob
+            .
+            app
+            D
+            /
+            OkHttp: r
+            .
+            eveonline
+            .
+            com
+            /
+            Character
+            /
+            928623249
+            _64
+            .
+            jpg
+            "}, "
+            128
+            x128
+            ": {"
+            href
+            ": "
+            http: //imageserver.eveonline.com/Character/928623249_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/928623249_256.jpg"}}, "id": 928623249, "id_str": "928623249"}, "contact": {"id_str": "928623249", "href": "https://crest-tq.eveonline.com/characters/928623249/", "name": "Ethereal Inquisitor", "id": 928623249}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/928623249/", "contactType": "Character", "watched": true, "blocked": false}, {"standing": 10.0, "character": {"name": "Ginger", "corporation": {"name": "L33t Corp", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/398904692/", "id_str": "398904692", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/398904692_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/398904692_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/398904692_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/398904692_256.png"}}, "id": 398904692}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/144528986/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/144528986/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/144528986_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/144528986_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/144528986_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/144528986_256.jpg"}}, "id": 144528986, "id_str": "144528986"}, "contact": {"id_str": "144528986", "href": "https://crest-tq.eveonline.com/characters/144528986/", "name": "Ginger", "id": 144528986}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/144528986/", "contactType": "Character", "watched": false, "blocked": false}, {"standing": 10.0, "character": {"name": "Harlock Riose", "corporation": {"name": "Fun Solo Alliance", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/98322290/", "id_str": "98322290", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/98322290_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/98322290_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/98322290_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/98322290_256.png"}}, "id": 98322290}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/1308023513/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/1308023513/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/1308023513_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/1308023513_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/1308023513_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/1308023513_256.jpg"}}, "id": 1308023513, "id_str": "1308023513"}, "contact": {"id_str": "1308023513", "href": "https://crest-tq.eveonline.com/characters/1308023513/", "name": "Harlock Riose", "id": 1308023513}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/1308023513/", "contactType": "Character", "watched": false, "blocked": false}, {"standing": 10.0, "character": {"name": "Ivanova Kea", "corporation": {"name": "Traquenard Labs", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/98041221/", "id_str": "98041221", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/98041221_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/98041221_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/98041221_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/98041221_256.png"}}, "id": 98041221}, "isNPC": false, "href": "https://crest-tq.eveonl
+            0
+            4
+            -10
+            12: 24
+            :
+            40.284
+            13850
+            -14711
+            /
+            com
+            .
+            eve0
+            .
+            fleetmob
+            .
+            app
+            D
+            /
+            OkHttp: ine
+            .
+            com
+            /
+            characters
+            /
+            536441156
+            /
+            ", "
+            capsuleer
+            ": {"
+            href
+            ": "
+            https: //crest-tq.eveonline.com/characters/536441156/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/536441156_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/536441156_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/536441156_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/536441156_256.jpg"}}, "id": 536441156, "id_str": "536441156"}, "contact": {"id_str": "536441156", "href": "https://crest-tq.eveonline.com/characters/536441156/", "name": "Ivanova Kea", "id": 536441156}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/536441156/", "contactType": "Character", "watched": false, "blocked": false}, {"standing": 10.0, "character": {"name": "Kyrandia Dax", "corporation": {"name": "Aliastra", "isNPC": true, "href": "https://crest-tq.eveonline.com/corporations/1000111/", "id_str": "1000111", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/1000111_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/1000111_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/1000111_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/1000111_256.png"}}, "id": 1000111}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/900693284/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/900693284/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/900693284_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/900693284_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/900693284_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/900693284_256.jpg"}}, "id": 900693284, "id_str": "900693284"}, "contact": {"id_str": "900693284", "href": "https://crest-tq.eveonline.com/characters/900693284/", "name": "Kyrandia Dax", "id": 900693284}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/900693284/", "contactType": "Character", "watched": true, "blocked": false}, {"standing": 10.0, "character": {"name": "Mahan TRAQNA", "corporation": {"name": "School of Applied Knowledge", "isNPC": true, "href": "https://crest-tq.eveonline.com/corporations/1000044/", "id_str": "1000044", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/1000044_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/1000044_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/1000044_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/1000044_256.png"}}, "id": 1000044}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/90959470/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/90959470/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/90959470_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/90959470_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/90959470_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/90959470_256.jpg"}}, "id": 90959470, "id_str": "90959470"}, "contact": {"id_str": "90959470", "href": "https://crest-tq.eveonline.com/characters/90959470/", "name": "Mahan TRAQNA", "id": 90959470}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/90959470/", "contactType": "Character", "watched": false, "blocked": false}, {"standing": 10.0, "character": {"name": "Morikvendi", "corporation": {"name": "Astral Expedition", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/98225790/", "id_str": "98225790", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/98225790_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/98225790_64.png"}, "128x128": {"href": "
+            0
+            4
+            -10
+            12: 24
+            :
+            40.284
+            13850
+            -14711
+            /
+            com
+            .
+            eve0
+            .
+            fleetmob
+            .
+            app
+            D
+            /
+            OkHttp: http
+            :
+            //imageserver.eveonline.com/Corporation/98225790_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/98225790_256.png"}}, "id": 98225790}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/90193232/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/90193232/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/90193232_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/90193232_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/90193232_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/90193232_256.jpg"}}, "id": 90193232, "id_str": "90193232"}, "contact": {"id_str": "90193232", "href": "https://crest-tq.eveonline.com/characters/90193232/", "name": "Morikvendi", "id": 90193232}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/90193232/", "contactType": "Character", "watched": false, "blocked": false}, {"standing": 10.0, "character": {"name": "Ramsies I", "corporation": {"name": "Merchants Trade Consortium", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/739536684/", "id_str": "739536684", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/739536684_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/739536684_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/739536684_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/739536684_256.png"}}, "id": 739536684}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/1947250021/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/1947250021/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/1947250021_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/1947250021_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/1947250021_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/1947250021_256.jpg"}}, "id": 1947250021, "id_str": "1947250021"}, "contact": {"id_str": "1947250021", "href": "https://crest-tq.eveonline.com/characters/1947250021/", "name": "Ramsies I", "id": 1947250021}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/1947250021/", "contactType": "Character", "watched": false, "blocked": false}, {"standing": 10.0, "character": {"name": "rswfire", "corporation": {"name": "Firesworn Capital", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/98448798/", "id_str": "98448798", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/98448798_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/98448798_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/98448798_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/98448798_256.png"}}, "id": 98448798}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/1870699061/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/1870699061/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/1870699061_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/1870699061_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/1870699061_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/1870699061_256.jpg"}}, "id": 1870699061, "id_str": "1870699061"}, "contact": {"id_str": "1870699061", "href": "https://crest-tq.eveonline.com/characters/1870699061/", "name": "rswfire", "id": 1870699061}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/1870699061/", "contactType": "Character", "watched": true, "blocked": false}, {"standing": 10.0, "character": {"name": "ShadowandLight", "corporation": {"name": "Trigger Happy Capsuleers", "isNPC": false, "href": "https://
+            0
+            4
+            -10
+            12: 24
+            :
+            40.284
+            13850
+            -14711
+            /
+            com
+            .
+            eve0
+            .
+            fleetmob
+            .
+            app
+            D
+            /
+            OkHttp: crest
+            -
+            tq
+            .
+            eveonline
+            .
+            com
+            /
+            corporations
+            /
+            98303020
+            /
+            ", "
+            id_str
+            ": "
+            98303020
+            ", "
+            logo
+            ": {"
+            32
+            x32
+            ": {"
+            href
+            ": "
+            http: //imageserver.eveonline.com/Corporation/98303020_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/98303020_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/98303020_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/98303020_256.png"}}, "id": 98303020}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/897655793/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/897655793/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/897655793_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/897655793_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/897655793_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/897655793_256.jpg"}}, "id": 897655793, "id_str": "897655793"}, "contact": {"id_str": "897655793", "href": "https://crest-tq.eveonline.com/characters/897655793/", "name": "ShadowandLight", "id": 897655793}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/897655793/", "contactType": "Character", "watched": true, "blocked": false}, {"standing": 10.0, "character": {"name": "Sumara Kain", "corporation": {"name": "Ministry of War", "isNPC": true, "href": "https://crest-tq.eveonline.com/corporations/1000080/", "id_str": "1000080", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/1000080_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/1000080_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/1000080_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/1000080_256.png"}}, "id": 1000080}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/91202089/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/91202089/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/91202089_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/91202089_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/91202089_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/91202089_256.jpg"}}, "id": 91202089, "id_str": "91202089"}, "contact": {"id_str": "91202089", "href": "https://crest-tq.eveonline.com/characters/91202089/", "name": "Sumara Kain", "id": 91202089}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/91202089/", "contactType": "Character", "watched": true, "blocked": false}, {"standing": 10.0, "character": {"name": "Tarten Infacen", "corporation": {"name": "Science and Trade Institute", "isNPC": true, "href": "https://crest-tq.eveonline.com/corporations/1000045/", "id_str": "1000045", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/1000045_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/1000045_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/1000045_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/1000045_256.png"}}, "id": 1000045}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/91350699/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/91350699/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/91350699_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/91350699_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/91350699_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/91350699_256.jpg"}}, "id": 91350699, "id_str": "91350699"}, "contact": {"id_str": "91350699", "href": "https://crest-tq.eveonline.com/characters/91350699/", "name": "Tarten Infacen", "id": 91350699}, "href": "https://crest-tq.eveonline.com/characters/90808929/con
+            0
+            4
+            -10
+            12: 24
+            :
+            40.284
+            13850
+            -14711
+            /
+            com
+            .
+            eve0
+            .
+            fleetmob
+            .
+            app
+            D
+            /
+            OkHttp: tacts
+            /
+            91350699
+            /
+            ", "
+            contactType
+            ": "
+            Character
+            ", "
+            watched
+            ": false, "
+            blocked
+            ": false}, {"
+            standing
+            ": 10.0, "
+            character
+            ": {"
+            name
+            ": "
+            Tawa
+            Kea
+            ", "
+            corporation
+            ": {"
+            name
+            ": "
+            SYNDAX
+            CORPORATION
+            ", "
+            isNPC
+            ": false, "
+            href
+            ": "
+            https: //crest-tq.eveonline.com/corporations/98028768/", "id_str": "98028768", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/98028768_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/98028768_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/98028768_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/98028768_256.png"}}, "id": 98028768}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/599400461/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/599400461/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/599400461_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/599400461_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/599400461_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/599400461_256.jpg"}}, "id": 599400461, "id_str": "599400461"}, "contact": {"id_str": "599400461", "href": "https://crest-tq.eveonline.com/characters/599400461/", "name": "Tawa Kea", "id": 599400461}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/599400461/", "contactType": "Character", "watched": false, "blocked": false}, {"standing": 10.0, "character": {"name": "Tevi", "corporation": {"name": "Di-Tron Heavy Industries", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/732773091/", "id_str": "732773091", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/732773091_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/732773091_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/732773091_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/732773091_256.png"}}, "id": 732773091}, "isNPC": false, "href": "https://crest-tq.eveonline.com/characters/795862791/", "capsuleer": {"href": "https://crest-tq.eveonline.com/characters/795862791/capsuleer/"}, "portrait": {"32x32": {"href": "http://imageserver.eveonline.com/Character/795862791_32.jpg"}, "64x64": {"href": "http://imageserver.eveonline.com/Character/795862791_64.jpg"}, "128x128": {"href": "http://imageserver.eveonline.com/Character/795862791_128.jpg"}, "256x256": {"href": "http://imageserver.eveonline.com/Character/795862791_256.jpg"}}, "id": 795862791, "id_str": "795862791"}, "contact": {"id_str": "795862791", "href": "https://crest-tq.eveonline.com/characters/795862791/", "name": "Tevi", "id": 795862791}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/795862791/", "contactType": "Character", "watched": true, "blocked": false}, {"standing": 10.0, "corporation": {"name": "Traquenard Labs", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/98041221/", "id_str": "98041221", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/98041221_32.png"}, "64x64": {"href": "http://imageserver.eveonline.com/Corporation/98041221_64.png"}, "128x128": {"href": "http://imageserver.eveonline.com/Corporation/98041221_128.png"}, "256x256": {"href": "http://imageserver.eveonline.com/Corporation/98041221_256.png"}}, "id": 98041221}, "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/98041221/", "contact": {"id_str": "98041221", "href": "https://crest-tq.eveonline.com/corporations/98041221/", "name": "Traquenard Labs", "id": 98041221}, "contactType": "Corporation"}, {"standing": 10.0, "character": {"name": "Vantica OD", "corporation": {"name": "Supreme-Lord's", "isNPC": false, "href": "https://crest-tq.eveonline.com/corporations/98290243/", "id_str": "98290243", "logo": {"32x32": {"href": "http://imageserver.eveonline.com/Corporation/98290243_32.png"}, "64x64": {"href":
+            0
+            4
+            -10
+            12: 24
+            :
+            40.284
+            13850
+            -14711
+            /
+            com
+            .
+            eve0
+            .
+            fleetmob
+            .
+            app
+            D
+            /
+            OkHttp: "http://imageserver.eveonline.com/Corporation/98290243_64.png"
+          },
+          "128x128": {
+            "href": "http://imageserver.eveonline.com/Corporation/98290243_128.png"
+          },
+          "256x256": {
+            "href": "http://imageserver.eveonline.com/Corporation/98290243_256.png"
+          }
+        },
+        "id": 98290243
+      },
+      "isNPC": false,
+      "href": "https://crest-tq.eveonline.com/characters/94443222/",
+      "capsuleer": {
+        "href": "https://crest-tq.eveonline.com/characters/94443222/capsuleer/"
+      },
+      "portrait": {
+        "32x32": {
+          "href": "http://imageserver.eveonline.com/Character/94443222_32.jpg"
+        },
+        "64x64": {
+          "href": "http://imageserver.eveonline.com/Character/94443222_64.jpg"
+        },
+        "128x128": {
+          "href": "http://imageserver.eveonline.com/Character/94443222_128.jpg"
+        },
+        "256x256": {
+          "href": "http://imageserver.eveonline.com/Character/94443222_256.jpg"
         }
       },
-      "boosterID": 0,
-      "boosterName": "",
-      "station": {
-        "id_str": "60000688",
-        "href": "http://localhost:26004/stations/60000688/",
-        "id": 60000688,
-        "name": "New Caldari I (Matigu) - Poksu Mineral Group Mineral Reserve"
+      "id": 94443222,
+      "id_str": "94443222"
+    },
+    "contact" : {
+      "id_str": "94443222",
+      "href": "https://crest-tq.eveonline.com/characters/94443222/",
+      "name": "Vantica OD",
+      "id": 94443222
+    },
+    "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/94443222/",
+    "contactType":
+    "Character",
+    "watched"
+    :
+    false,
+    "blocked"
+    :
+    false
+    },
+    {
+      "standing": 10.0,
+      "character": {
+        "name": "Wapu Kashuken",
+        "corporation": {
+          "name": "Serenity Rising LLC",
+          "isNPC": false,
+          "href": "https://crest-tq.eveonline.com/corporations/1457787141/",
+          "id_str": "1457787141",
+          "logo": {
+            "32x32": {
+              "href": "http://imageserver.eveonline.com/Corporation/1457787141_32.png"
+            },
+            "64x64": {
+              "href": "http://imageserver.eveonline.com/Corporation/1457787141_64.png"
+            },
+            "128x128": {
+              "href": "http://imageserver.eveonline.com/Corporation/1457787141_128.png"
+            },
+            "256x256": {
+              "href": "http://imageserver.eveonline.com/Corporation/1457787141_256.png"
+            }
+          },
+          "id": 1457787141
+        },
+        "isNPC": false,
+        "href": "https://crest-tq.eveonline.com/characters/91123552/",
+        "capsuleer": {
+          "href": "https://crest-tq.eveonline.com/characters/91123552/capsuleer/"
+        },
+        "portrait": {
+          "32x32": {
+            "href": "http://imageserver.eveonline.com/Character/91123552_32.jpg"
+          },
+          "64x64": {
+            "href": "http://imageserver.eveonline.com/Character/91123552_64.jpg"
+          },
+          "128x128": {
+            "href": "http://imageserver.eveonline.com/Character/91123552_128.jpg"
+          },
+          "256x256": {
+            "href": "http://imageserver.eveonline.com/Character/91123552_256.jpg"
+          }
+        },
+        "id": 91123552,
+        "id_str": "91123552"
       },
-      "squadID_str": "3000110005634",
-      "roleID_str": "4",
-      "roleName": "Squad Member",
-      "ship": {
-        "id_str": "23913",
-        "href": "http://localhost:26004/types/23913/",
-        "id": 23913,
-        "name": "Nyx"
+      "contact": {
+        "id_str": "91123552",
+        "href": "https://crest-tq.eveonline.com/characters/91123552/",
+        "name": "Wapu Kashuken",
+        "id": 91123552
       },
-      "joinTime": "2016-04-03T15:20:06",
-      "wingID_str": "2000110005634"
+      "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/91123552/",
+      "contactType": "Character",
+      "watched": false,
+      "blocked": false
+    },
+    {
+      "standing": 0.0,
+      "character": {
+        "name": "Zach Donnell",
+        "corporation": {
+          "name": "Ghost-Busters",
+          "isNPC": false,
+          "href": "https://crest-tq.eveonline.com/corporations/1317688027/",
+          "id_str": "1317688027",
+          "logo": {
+            "32x32": {
+              "href": "http://imageserver.eveonline.com/Corporation/1317688027_32.png"
+            },
+            "64x64": {
+              "href": "http://imageserver.eveonline.com/Corporation/1317688027_64.png"
+            },
+            "128x128": {
+              "href": "http://imageserver.eveonline.com/Corporation/1317688027_128.png"
+            },
+            "256x256": {
+              "href": "http://imageserver.eveonline.com/Corporation/1317688027_256.png"
+            }
+          },
+          "id": 1317688027
+        },
+        "isNPC": false,
+        "href": "https://crest-tq.eveonline.com/characters/1892453967/",
+        "capsuleer": {
+          "href": "https://crest-tq.eveonline.com/characters/1892453967/capsuleer/"
+        },
+        "portrait": {
+          "32x32": {
+            "href": "http://imageserver.eveonline.com/Character/1892453967_32.jpg"
+          },
+          "64x64": {
+            "href": "http://imageserver.eveonline.com/Character/1892453967_64.jpg"
+          },
+          "128x128": {
+            "href": "http://imageserver.eveonline.com/Character/1892453967_128.jpg"
+          },
+          "256x256": {
+            "href": "http://imageserver.eveonline.com/Character/1892453967_256.jpg"
+          }
+        },
+        "id": 1892453967,
+        "id_str": "1892453967"
+      },
+      "contact": {
+        "id_str": "1892453967",
+        "href": "https://crest-tq.eveonline.com/characters/1892453967/",
+        "name": "Zach Donnell",
+        "id": 1892453967
+      },
+      "href": "https://crest-tq.eveonline.com/characters/90808929/contacts/1892453967/",
+      "contactType": "Character",
+      "watched": true,
+      "blocked": false
     }
   ],
   "pageCount": 1,
   "pageCount_str": "1",
-  "totalCount": 2
+  "totalCount": 23
 }

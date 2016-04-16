@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_drawer_character"
+        android:icon="@drawable/eveui_biography"
+        android:title="@string/drawer.character"/>
+    <item
+        android:id="@+id/menu_drawer_contacts"
+        android:icon="@drawable/eveui_contacts"
+        android:title="@string/drawer.contacts"/>
+    <item
+        android:id="@+id/menu_drawer_fittings"
+        android:icon="@drawable/eveui_fitting"
+        android:title="@string/drawer.fittings"/>
+    <item
+        android:id="@+id/menu_drawer_fleets"
+        android:icon="@drawable/eveui_fleet"
+        android:title="@string/drawer.fleets"/>
+</menu>
