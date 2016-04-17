@@ -2,7 +2,7 @@ package org.devfleet.mob.app.model;
 
 public class EveContact extends EveCharacter {
 
-    private double standing;
+    private int standing;
 
     private String contactType;
 
@@ -20,11 +20,11 @@ public class EveContact extends EveCharacter {
         this.description = description;
     }
 
-    public double getStanding() {
+    public int getStanding() {
         return standing;
     }
 
-    public void setStanding(double standing) {
+    public void setStanding(int standing) {
         this.standing = standing;
     }
 

@@ -23,10 +23,10 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="crest.id"
-            android:value="84c122b173f94063a488c177d7e0b433"/>
+            android:value="742391260f8143778f1212b4d6d91f48"/>
         <meta-data
             android:name="crest.key"
-            android:value="Ro0FkbQujNwNmWEXguGj8cRTpsRIPq7kX5e8qMNZ"/>
+            android:value="3FFspXrXmadAycl7KoI3nZ74RoHuXcnj3wnAeUW4"/>
         <meta-data
             android:name="crest.redirect"
             android:value="fleet://api.eveonline.com/redirect"/>

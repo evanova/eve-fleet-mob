@@ -70,11 +70,12 @@ android {
 }
 
 dependencies {
-    compile 'org.devfleet.crest:api:0.1'
-    compile 'org.devfleet.crest:retrofit:0.1'
-
+    compile 'org.devfleet.crest:api:0.+'
+    compile 'org.devfleet.crest:retrofit:0.+'
+    compile 'org.devfleet.dotlan:dotlan:0.+'
+    
     compile 'org.slf4j:slf4j-android:1.7.21'
-    compile 'commons-lang:commons-lang:2.6'
+    compile 'org.apache.commons:commons-lang3:3.4'
 
     compile 'com.android.support:support-v4:23.2.1'
     compile 'com.android.support:support-v13:23.1.1'

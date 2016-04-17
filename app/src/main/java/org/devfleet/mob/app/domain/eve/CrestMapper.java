@@ -1,15 +1,18 @@
 package org.devfleet.mob.app.domain.eve;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.devfleet.crest.model.CrestCharacter;
 import org.devfleet.crest.model.CrestContact;
 import org.devfleet.crest.model.CrestCorporation;
 import org.devfleet.crest.model.CrestFitting;
 import org.devfleet.crest.model.CrestItem;
 import org.devfleet.crest.model.CrestServerStatus;
+import org.devfleet.crest.model.CrestSolarSystem;
 import org.devfleet.mob.app.model.EveCharacter;
 import org.devfleet.mob.app.model.EveContact;
 import org.devfleet.mob.app.model.EveFitting;
+import org.devfleet.mob.app.model.EveLocation;
 import org.devfleet.mob.app.model.EveServerStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,6 +107,13 @@ final class CrestMapper {
         returned.setEveOnline(status.getEveOnline());
         returned.setServerName(status.getServerName());
         returned.setServerVersion(status.getServerVersion());
+        return returned;
+    }
+
+    public static EveLocation map(final CrestSolarSystem solarSystem) {
+        final EveLocation returned = new EveLocation();
+        returned.setSolarSystemID(solarSystem.getId());
+        returned.setSolarSystemName(solarSystem.getName());
         return returned;
     }
 }

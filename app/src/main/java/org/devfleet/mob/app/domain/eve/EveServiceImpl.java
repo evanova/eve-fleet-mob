@@ -1,12 +1,18 @@
 package org.devfleet.mob.app.domain.eve;
 
 import org.devfleet.crest.CrestService;
+import org.devfleet.crest.model.CrestContact;
+import org.devfleet.crest.model.CrestItem;
 import org.devfleet.crest.model.CrestSolarSystem;
 import org.devfleet.crest.retrofit.CrestClient;
+import org.devfleet.dotlan.DotlanService;
+import org.devfleet.dotlan.impl.DotlanServiceImpl;
 import org.devfleet.mob.app.domain.EveService;
 import org.devfleet.mob.app.model.EveCharacter;
 import org.devfleet.mob.app.model.EveContact;
 import org.devfleet.mob.app.model.EveFitting;
+import org.devfleet.mob.app.model.EveLocation;
+import org.devfleet.mob.app.model.EveRoute;
 import org.devfleet.mob.app.model.EveServerStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,17 +22,22 @@ import java.util.Collections;
 import java.util.List;
 
 class EveServiceImpl implements EveService {
+
     private static final Logger LOG = LoggerFactory.getLogger(EveServiceImpl.class);
 
     private final CrestClient client;
-    private CrestService service = null;
+
+    private CrestService crest = null;
+    private DotlanService dotlan = null;
 
     private EveCharacter character;
 
     public EveServiceImpl(final CrestClient client) {
         this.client = client;
+        this.dotlan = new DotlanServiceImpl();
+
         try {
-            this.service = client.fromDefault();
+            this.crest = client.fromDefault();
         }
         catch (IOException e) {
             throw new IllegalStateException(e);
@@ -37,7 +48,7 @@ class EveServiceImpl implements EveService {
         this.character = null;
 
         try {
-            this.service = client.fromRefreshToken(refresh);
+            this.crest = client.fromRefreshToken(refresh);
             return true;
         }
         catch (IOException e) {
@@ -50,7 +61,7 @@ class EveServiceImpl implements EveService {
         this.character = null;
 
         try {
-            this.service = client.fromAuthCode(authCode);
+            this.crest = client.fromAuthCode(authCode);
             return true;
         }
         catch (IOException e) {
@@ -61,16 +72,16 @@ class EveServiceImpl implements EveService {
 
     @Override
     public EveServerStatus getServerStatus() {
-        return CrestMapper.map(this.service.getServerStatus());
+        return CrestMapper.map(this.crest.getServerStatus());
     }
 
     @Override
     public List<EveContact> getContacts() {
-        if (null == this.service) {
+        if (null == this.crest) {
             return Collections.emptyList();
         }
         try {
-            return CrestMapper.mapContacts(this.service.getContacts());
+            return CrestMapper.mapContacts(this.crest.getContacts());
         }
         catch (IllegalStateException e) {
             LOG.debug(e.getLocalizedMessage(), e);
@@ -80,29 +91,76 @@ class EveServiceImpl implements EveService {
     }
 
     @Override
+    public boolean addContact(final EveContact contact) {
+        if (null == this.crest) {
+            return false;
+        }
+        try {
+            final CrestContact c = new CrestContact();
+            c.setContactType(contact.getContactType());
+            c.setStanding(contact.getStanding());
+
+            final CrestItem item = new CrestItem();
+            item.setId(contact.getID());
+            c.setContact(item);
+            return this.crest.addContact(c);
+        }
+        catch (IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.warn("addContact: not authenticated");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeContact(long contactID) {
+        if (null == this.crest) {
+            return false;
+        }
+        try {
+            return this.crest.deleteContact(contactID);
+        }
+        catch (IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.warn("removeContact: not authenticated");
+            return false;
+        }
+    }
+
+    @Override
     public EveCharacter getCharacter() {
-        if (null == this.service) {
+        if (null == this.crest) {
             return null;
         }
         if (null == this.character) {
-            this.character = getCharacter(this.service);
+            this.character = getCharacter(this.crest);
         }
         return this.character;
     }
 
     @Override
     public List<EveFitting> getFittings() {
-        if (null == this.service) {
+        if (null == this.crest) {
             return Collections.emptyList();
         }
         try {
-            return CrestMapper.mapFittings(this.service.getFittings());
+            return CrestMapper.mapFittings(this.crest.getFittings());
         }
         catch (IllegalStateException e) {
             LOG.debug(e.getLocalizedMessage(), e);
             LOG.warn("getFittings: not authenticated");
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public boolean setRoute(EveRoute route) {
+        return false;
+    }
+
+    @Override
+    public boolean addRoute(EveRoute route) {
+        return false;
     }
 
     private EveCharacter getCharacter(final CrestService service) {
