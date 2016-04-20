@@ -4,13 +4,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 
 public abstract class ListRecyclerViewAdapter<T> extends RecyclerView.Adapter<ListRecyclerViewAdapter.ViewHolder> {
-
+    private static final Logger LOG = LoggerFactory.getLogger(ListRecyclerViewAdapter.class);
     public static class ViewHolder<T> extends RecyclerView.ViewHolder {
         public ViewHolder(View itemView) {
             super(itemView);
@@ -29,6 +32,7 @@ public abstract class ListRecyclerViewAdapter<T> extends RecyclerView.Adapter<Li
     public void setItems(final List<T> items) {
         this.items.clear();
         this.items.addAll(items);
+        LOG.error("setItems: {}", items.size());
         notifyDataSetChanged();
     }
 

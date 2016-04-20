@@ -16,6 +16,7 @@ import org.devfleet.mob.app.model.EveCharacter;
 import org.devfleet.mob.app.presenter.MainPresenter;
 import org.devfleet.mob.app.ui.contacts.ContactFragment;
 import org.devfleet.mob.app.ui.fittings.FittingFragment;
+import org.devfleet.mob.app.ui.routes.RouteFragment;
 import org.devfleet.mob.app.widgets.FragmentAdapter;
 
 import java.util.List;
@@ -36,6 +37,9 @@ public class MainActivity extends AbstractActivity implements MainPresenter.View
     @Bind(R.id.collapsing_toolbar)
     CollapsingToolbarLayout toolbarLayout;
 
+    @Bind(R.id.toolbar)
+    android.support.v7.widget.Toolbar toolbar;
+
     @Bind(R.id.backdrop)
     ImageView imageView;
 
@@ -51,10 +55,10 @@ public class MainActivity extends AbstractActivity implements MainPresenter.View
     @Bind(R.id.appScrollView)
     NestedScrollView nestedScrollView;
 
-    FragmentAdapter pagerAdapter;
+    private FragmentAdapter pagerAdapter;
 
     private DrawerSupport drawer;
-    private long characterID;
+    private EveCharacter character;
 
     @Override
     protected final int getLayoutId() {
@@ -63,7 +67,12 @@ public class MainActivity extends AbstractActivity implements MainPresenter.View
 
     @Override
     public final void setTitle(CharSequence title) {
+        toolbar.setTitle(title);
         toolbarLayout.setTitle(title);
+    }
+
+    public final void setSubTitle(CharSequence title) {
+        toolbar.setSubtitle(title);
     }
 
     @Override
@@ -76,7 +85,9 @@ public class MainActivity extends AbstractActivity implements MainPresenter.View
         this.pagerAdapter.addFragment(new MainFragment(), r(R.string.drawer_character));
         this.pagerAdapter.addFragment(new ContactFragment(), r(R.string.drawer_contacts));
         this.pagerAdapter.addFragment(new FittingFragment(), r(R.string.drawer_fittings));
+        this.pagerAdapter.addFragment(new RouteFragment(), r(R.string.drawer_routes));
 
+        this.pagerView.setId(R.id.pagerMain);
         this.pagerView.setAdapter(this.pagerAdapter);
 
         this.drawer = new DrawerSupport(this, savedInstanceState) {
@@ -134,7 +145,8 @@ public class MainActivity extends AbstractActivity implements MainPresenter.View
     public final void showPage(final int page) {
         this.pagerView.setCurrentItem(page, false);
         final AbstractFragment fragment = (AbstractFragment)this.pagerAdapter.getItem(this.pagerView.getCurrentItem());
-        fragment.setCharacter(this.characterID);
+        setSubTitle("SUB PAGE " + page);
+        fragment.setCharacter(this.character);
     }
 
     public void setCharacters(List<EveCharacter> characters) {
@@ -143,7 +155,7 @@ public class MainActivity extends AbstractActivity implements MainPresenter.View
 
     @Override
     public void loginCharacter(EveCharacter character) {
-        this.characterID = (null == character) ? 0 : character.getID();
+        this.character = character;
 
         if (null == character) {
             setTitle(R.string.app_name);
@@ -151,12 +163,12 @@ public class MainActivity extends AbstractActivity implements MainPresenter.View
         }
         else {
             setTitle(character.getName());
-            images.loadCharacterImage(this.characterID, imageView);
+            images.loadCharacterImage(this.character.getID(), imageView);
         }
 
         this.drawer.setActiveCharacter(character);
         final AbstractFragment fragment = (AbstractFragment)this.pagerAdapter.getItem(this.pagerView.getCurrentItem());
-        fragment.setCharacter(this.characterID);
+        fragment.setCharacter(this.character);
     }
 
     public final void openDrawer() {

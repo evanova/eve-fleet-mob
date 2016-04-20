@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="pagerMain" type="id"/>
+    <item name="pagerRoutes" type="id"/>
+</resources>

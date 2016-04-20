@@ -9,9 +9,9 @@ import com.karumi.rosie.domain.usecase.UseCaseHandler;
 
 import org.devfleet.mob.app.R;
 import org.devfleet.mob.app.domain.EveService;
-import org.devfleet.mob.app.domain.usecase.CharacterUseCase;
-import org.devfleet.mob.app.domain.usecase.LoginUseCase;
 import org.devfleet.mob.app.model.EveCharacter;
+import org.devfleet.mob.app.presenter.usecase.CharacterUseCases;
+import org.devfleet.mob.app.presenter.usecase.LoginUseCases;
 
 import java.util.List;
 
@@ -28,6 +28,7 @@ public final class MainPresenter extends AbstractPresenter<MainPresenter.View> {
         int CONTACTS = 1;
         int FITTINGS = 2;
         int FLEETS = 3;
+        int ROUTES = 4;
 
         void showPage(final int page);
 
@@ -44,8 +45,8 @@ public final class MainPresenter extends AbstractPresenter<MainPresenter.View> {
 
     private final Context context;
 
-    private final CharacterUseCase characters;
-    private final LoginUseCase login;
+    private final CharacterUseCases characters;
+    private final LoginUseCases login;
 
     private long lastLoggedIn = 0;
 
@@ -53,8 +54,8 @@ public final class MainPresenter extends AbstractPresenter<MainPresenter.View> {
     public MainPresenter(
             final Context context,
             final UseCaseHandler useCaseHandler,
-            final CharacterUseCase characters,
-            final LoginUseCase login) {
+            final CharacterUseCases characters,
+            final LoginUseCases login) {
         super(useCaseHandler);
         this.login = login;
         this.characters = characters;
@@ -100,6 +101,10 @@ public final class MainPresenter extends AbstractPresenter<MainPresenter.View> {
             }
             case R.id.menu_drawer_fleets: {
                 getView().showPage(View.FLEETS);
+                return true;
+            }
+            case R.id.menu_drawer_routes: {
+                getView().showPage(View.ROUTES);
                 return true;
             }
             default:

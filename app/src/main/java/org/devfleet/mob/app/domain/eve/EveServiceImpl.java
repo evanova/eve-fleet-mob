@@ -5,6 +5,8 @@ import org.devfleet.crest.model.CrestContact;
 import org.devfleet.crest.model.CrestItem;
 import org.devfleet.crest.model.CrestSolarSystem;
 import org.devfleet.crest.retrofit.CrestClient;
+import org.devfleet.dotlan.DotlanOptions;
+import org.devfleet.dotlan.DotlanRoute;
 import org.devfleet.dotlan.DotlanService;
 import org.devfleet.dotlan.impl.DotlanServiceImpl;
 import org.devfleet.mob.app.domain.EveService;
@@ -18,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -113,7 +116,7 @@ class EveServiceImpl implements EveService {
     }
 
     @Override
-    public boolean removeContact(long contactID) {
+    public boolean removeContact(final long contactID) {
         if (null == this.crest) {
             return false;
         }
@@ -154,13 +157,63 @@ class EveServiceImpl implements EveService {
     }
 
     @Override
-    public boolean setRoute(EveRoute route) {
-        return false;
+    public boolean setRoute(final EveRoute route) {
+        if (null == this.crest) {
+            return false;
+        }
+        try {
+            return this.crest.setWaypoints(CrestMapper.map(route));
+        }
+        catch (IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.warn("getCharacter: not authenticated");
+            return false;
+        }
     }
 
     @Override
-    public boolean addRoute(EveRoute route) {
-        return false;
+    public boolean addRoute(final EveRoute route) {
+        if (null == this.crest) {
+            return false;
+        }
+        try {
+            return this.crest.addWaypoints(CrestMapper.map(route));
+        }
+        catch (IllegalStateException e) {
+            LOG.debug(e.getLocalizedMessage(), e);
+            LOG.warn("getCharacter: not authenticated");
+            return false;
+        }
+    }
+
+    @Override
+    public EveRoute getRoute(final EveRoute route) {
+        final DotlanOptions options = DotlanMapper.options(route);
+
+        switch (route.getType()) {
+            case EveRoute.HIGHSEC:
+                return DotlanMapper.transform(dotlan.getHighSecRoute(options), route.getType());
+            case EveRoute.LOWSEC:
+                return DotlanMapper.transform(dotlan.getLowSecRoute(options), route.getType());
+            case EveRoute.FASTEST:
+            default:
+                return DotlanMapper.transform(dotlan.getFastestRoute(options), route.getType());
+        }
+    }
+
+    @Override
+    public List<EveLocation> getLocations() {
+        final List<CrestSolarSystem> systems = this.crest.getLocations();
+        if (null == systems) {
+            LOG.error("Unable to retrieve CREST solar systems");
+            return Collections.emptyList();
+        }
+        final List<EveLocation> locations = new ArrayList<>(systems.size());
+        for (CrestSolarSystem s: systems) {
+            locations.add(CrestMapper.map(s));
+            LOG.error("getLocations: {}", s.getName());
+        }
+        return locations;
     }
 
     private EveCharacter getCharacter(final CrestService service) {

@@ -3,6 +3,7 @@ package org.devfleet.mob.app.ui.fittings;
 import com.karumi.rosie.view.Presenter;
 
 import org.devfleet.mob.app.R;
+import org.devfleet.mob.app.model.EveCharacter;
 import org.devfleet.mob.app.model.EveFitting;
 import org.devfleet.mob.app.presenter.FittingPresenter;
 import org.devfleet.mob.app.ui.AbstractFragment;
@@ -28,8 +29,8 @@ public class FittingFragment extends AbstractFragment implements FittingPresente
     }
 
     @Override
-    public void setCharacter(final long character) {
-        this.presenter.setCharacter(character);
+    public void setCharacter(final EveCharacter character) {
+        this.presenter.setCharacter((null == character) ? 0 : character.getID());
     }
 
     @Override

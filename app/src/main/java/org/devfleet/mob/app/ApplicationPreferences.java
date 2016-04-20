@@ -9,6 +9,8 @@ public final class ApplicationPreferences {
     private static final String KEY_TOKEN = "ApplicationPreferences.saved.tokens.";
     private static final String KEY_LAST = "ApplicationPreferences.saved.character";
 
+    private static final String KEY_VERSION = "ApplicationPreferences.version";
+
     private final SharedPreferences preferences;
 
     public ApplicationPreferences(Context context) {
@@ -31,4 +33,11 @@ public final class ApplicationPreferences {
         return preferences.getString(KEY_TOKEN + charID, null);
     }
 
+    public void setCrestVersion(final String version) {
+        preferences.edit().putString(KEY_VERSION, version).commit();
+    }
+
+    public String getCrestVersion() {
+        return preferences.getString(KEY_VERSION, null);
+    }
 }

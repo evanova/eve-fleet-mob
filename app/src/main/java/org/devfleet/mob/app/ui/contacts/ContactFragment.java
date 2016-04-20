@@ -3,6 +3,7 @@ package org.devfleet.mob.app.ui.contacts;
 import com.karumi.rosie.view.Presenter;
 
 import org.devfleet.mob.app.R;
+import org.devfleet.mob.app.model.EveCharacter;
 import org.devfleet.mob.app.model.EveContact;
 import org.devfleet.mob.app.presenter.ContactPresenter;
 import org.devfleet.mob.app.ui.AbstractFragment;
@@ -28,8 +29,8 @@ public class ContactFragment extends AbstractFragment implements ContactPresente
     }
 
     @Override
-    public void setCharacter(long character) {
-        this.presenter.setCharacter(character);
+    public void setCharacter(final EveCharacter character) {
+        this.presenter.setCharacter((null == character) ? 0 : character.getID());
     }
 
     public void setContacts(List<EveContact> contacts) {

@@ -5,8 +5,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.devfleet.crest.retrofit.CrestClient;
 import org.devfleet.mob.app.domain.EveService;
 
@@ -23,7 +23,7 @@ public class EveModule {
 
     public EveModule(final Context context) {
         CrestClient.Builder builder =
-                CrestClient.TQ()
+                CrestClient.SISI()
                 .id(getStringMetaData(context, "crest.id"))
                 .key(getStringMetaData(context, "crest.key"))
                 .redirect(getStringMetaData(context, "crest.redirect"));
@@ -61,8 +61,11 @@ public class EveModule {
 
     protected static final String[] getArrayMetaData(final Context context, final String key) {
         try {
-            final String csv = getStringMetaData(context, key);
-            return StringUtils.split(csv, ",");
+            final String[] r = StringUtils.split(getStringMetaData(context, key), ",");
+            for (int i = 0; i < r.length; i++) {
+                r[i] = r[i].trim();
+            }
+            return r;
         }
         catch (IllegalStateException e) {
             return null;

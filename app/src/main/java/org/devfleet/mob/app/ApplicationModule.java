@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.karumi.rosie.domain.usecase.error.ErrorFactory;
 import com.karumi.rosie.domain.usecase.error.ErrorHandler;
+import com.karumi.rosie.view.Presenter;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 import com.squareup.picasso.Picasso;
@@ -66,5 +67,11 @@ public class ApplicationModule {
                 return new Error(e.getMessage(), e);
             }
         });
+    }
+
+    @Provides
+    @Singleton
+    public ApplicationPreferences providePreferences() {
+        return new ApplicationPreferences(this.context);
     }
 }

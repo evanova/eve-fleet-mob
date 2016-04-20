@@ -2,8 +2,8 @@ package org.devfleet.mob.app.presenter;
 
 import com.karumi.rosie.domain.usecase.UseCaseHandler;
 
-import org.devfleet.mob.app.domain.usecase.CharacterUseCase;
 import org.devfleet.mob.app.model.EveContact;
+import org.devfleet.mob.app.presenter.usecase.CharacterUseCases;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,13 +22,13 @@ public final class ContactPresenter extends AbstractPresenter<ContactPresenter.V
 
     }
 
-    private final CharacterUseCase characters;
+    private final CharacterUseCases characters;
     private long characterID = 0;
 
     @Inject
     public ContactPresenter(
             final UseCaseHandler useCaseHandler,
-            final CharacterUseCase characters) {
+            final CharacterUseCases characters) {
         super(useCaseHandler);
         this.characters = characters;
     }

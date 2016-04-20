@@ -33,6 +33,8 @@ public interface EveService {
 
     boolean addRoute(final EveRoute route);
 
+    EveRoute getRoute(final EveRoute route);
+
     List<EveContact> getContacts();
 
     boolean addContact(final EveContact contact);
@@ -40,4 +42,6 @@ public interface EveService {
     boolean removeContact(final long contactID);
 
     List<EveFitting> getFittings();
+
+    List<EveLocation> getLocations();
 }

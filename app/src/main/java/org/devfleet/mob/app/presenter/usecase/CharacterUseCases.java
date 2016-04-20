@@ -1,4 +1,4 @@
-package org.devfleet.mob.app.domain.usecase;
+package org.devfleet.mob.app.presenter.usecase;
 
 import org.devfleet.mob.app.domain.EveRepository;
 import org.devfleet.mob.app.domain.EveService;
@@ -10,17 +10,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class CharacterUseCase {
-
-    private final EveRepository repository;
-    private final EveService.Authenticator authenticator;
+public final class CharacterUseCases extends UseCaseSupport {
 
     @Inject
-    public CharacterUseCase(
-            final EveService.Authenticator authenticator,
-            final EveRepository repository) {
-        this.authenticator = authenticator;
-        this.repository = repository;
+    public CharacterUseCases(EveService.Authenticator authenticator, EveRepository repository) {
+        super(authenticator, repository);
     }
 
     public List<EveContact> listContacts(final long charID) {

@@ -1,8 +1,8 @@
-package org.devfleet.mob.app.domain.usecase;
+package org.devfleet.mob.app.presenter.usecase;
 
 import android.net.Uri;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.devfleet.mob.app.domain.EveRepository;
 import org.devfleet.mob.app.domain.EveService;
 import org.devfleet.mob.app.model.EveCharacter;
@@ -10,20 +10,16 @@ import org.devfleet.mob.app.model.EveCharacter;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-public class LoginUseCase {
-
-    private final EveService.Authenticator authenticator;
-    private final EveRepository repository;
+public final class LoginUseCases extends UseCaseSupport {
 
     private final Uri loginUri;
 
     @Inject
-    public LoginUseCase(
+    public LoginUseCases(
             final EveService.Authenticator authenticator,
             final EveRepository repository,
             @Named("loginURI") final Uri loginUri) {
-        this.authenticator = authenticator;
-        this.repository = repository;
+        super(authenticator, repository);
         this.loginUri = loginUri;
     }
 

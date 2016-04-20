@@ -9,10 +9,12 @@ import org.devfleet.crest.model.CrestFitting;
 import org.devfleet.crest.model.CrestItem;
 import org.devfleet.crest.model.CrestServerStatus;
 import org.devfleet.crest.model.CrestSolarSystem;
+import org.devfleet.crest.model.CrestWaypoint;
 import org.devfleet.mob.app.model.EveCharacter;
 import org.devfleet.mob.app.model.EveContact;
 import org.devfleet.mob.app.model.EveFitting;
 import org.devfleet.mob.app.model.EveLocation;
+import org.devfleet.mob.app.model.EveRoute;
 import org.devfleet.mob.app.model.EveServerStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,6 +102,9 @@ final class CrestMapper {
     }
 
     public static EveServerStatus map(final CrestServerStatus status) {
+        if (null == status) {
+            return null;
+        }
         final EveServerStatus returned = new EveServerStatus();
         returned.setDustCount(status.getDustCount());
         returned.setDustOnline(status.getDustOnline());
@@ -114,6 +119,19 @@ final class CrestMapper {
         final EveLocation returned = new EveLocation();
         returned.setSolarSystemID(solarSystem.getId());
         returned.setSolarSystemName(solarSystem.getName());
+        return returned;
+    }
+
+    public static List<CrestWaypoint> map(final EveRoute route) {
+        final List<CrestWaypoint> returned = new ArrayList<>(route.getLocations().size());
+        for (EveLocation l: route.getLocations()) {
+            final CrestWaypoint wp = new CrestWaypoint();
+            final CrestItem item = new CrestItem();
+            item.setId(l.getSolarSystemID());
+            item.setName(l.getSolarSystemName());
+            wp.setSolarSystem(item);
+            returned.add(wp);
+        }
         return returned;
     }
 }

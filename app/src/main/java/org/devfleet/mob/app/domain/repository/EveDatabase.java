@@ -9,28 +9,33 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import org.devfleet.mob.app.domain.EveService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 final class EveDatabase extends OrmLiteSqliteOpenHelper {
     private static final Logger LOG = LoggerFactory.getLogger(EveDatabase.class);
     private static final String DATABASE_NAME = "fm.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     private static EveDatabase database;
 
     private Dao<CharacterEntity, Long> characterDAO;
     private Dao<CorporationEntity, Long> corporationDAO;
+    private Dao<LocationEntity, Long> locationDAO;
 
     private EveDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         try {
             this.characterDAO = getDao(CharacterEntity.class);
             this.corporationDAO = getDao(CorporationEntity.class);
+            this.locationDAO = getDao(LocationEntity.class);
+            this.locationDAO.setObjectCache(true);
         }
         catch (SQLException e) {
             throw new IllegalStateException(e);
@@ -47,6 +52,7 @@ final class EveDatabase extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
+            TableUtils.createTable(connectionSource, LocationEntity.class);
             TableUtils.createTable(connectionSource, CharacterEntity.class);
             TableUtils.createTable(connectionSource, CorporationEntity.class);
         }
@@ -65,6 +71,7 @@ final class EveDatabase extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.dropTable(connectionSource, CharacterEntity.class, true);
             TableUtils.dropTable(connectionSource, CorporationEntity.class, true);
+            TableUtils.dropTable(connectionSource, LocationEntity.class, true);
         }
         catch (SQLException e) {
             throw new IllegalStateException(e);
@@ -160,6 +167,44 @@ final class EveDatabase extends OrmLiteSqliteOpenHelper {
         }
         catch (SQLException e) {
             LOG.error(e.getLocalizedMessage(), e);
+        }
+    }
+
+    public void setLocations(final List<LocationEntity> locations) {
+        LOG.error("setLocations: {}", locations.size());
+        try {
+            TableUtils.clearTable(getConnectionSource(), LocationEntity.class);
+
+            this.locationDAO.callBatchTasks(() -> {
+                for (LocationEntity l : locations) {
+                    locationDAO.create(l);
+                }
+                LOG.error("setLocations: created {}", locations.size());
+                return null;
+            });
+        }
+        catch (Exception e) {
+            LOG.error(e.getLocalizedMessage(), e);
+        }
+    }
+
+    public LocationEntity getLocation(final long id) {
+        try {
+            return this.locationDAO.queryForId(id);
+        }
+        catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage(), e);
+            return null;
+        }
+    }
+
+    public LocationEntity getLocation(final String name) {
+        try {
+            return this.locationDAO.queryBuilder().where().eq("name", name).queryForFirst();
+        }
+        catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage(), e);
+            return null;
         }
     }
 }

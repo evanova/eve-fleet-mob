@@ -35,8 +35,12 @@ public abstract class AbstractActivity extends RosieAppCompatActivity {
         ab.setTitle(rId);
     }
 
+    public void setSubTitle(int rId) {
+
+    }
     public void showError(String error) {
-        Snacks.show(this, error, true);
+      //  Snacks.show(this, error, true);
+
     }
 
     public void showLoading(boolean loading) {

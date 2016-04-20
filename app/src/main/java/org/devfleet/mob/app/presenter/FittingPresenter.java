@@ -2,8 +2,8 @@ package org.devfleet.mob.app.presenter;
 
 import com.karumi.rosie.domain.usecase.UseCaseHandler;
 
-import org.devfleet.mob.app.domain.usecase.CharacterUseCase;
 import org.devfleet.mob.app.model.EveFitting;
+import org.devfleet.mob.app.presenter.usecase.CharacterUseCases;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,13 +21,13 @@ public final class FittingPresenter extends AbstractPresenter<FittingPresenter.V
 
     }
 
-    private final CharacterUseCase characters;
+    private final CharacterUseCases characters;
     private long characterID = 0;
 
     @Inject
     public FittingPresenter(
             final UseCaseHandler useCaseHandler,
-            final CharacterUseCase characters) {
+            final CharacterUseCases characters) {
         super(useCaseHandler);
         this.characters = characters;
     }
